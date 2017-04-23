@@ -1,16 +1,16 @@
 {
-  "name": "crater",
-  "author": "Andy Edwards <jedwards@fastmail.com>",
-  "version": "2.0.0-alpha.0",
+  "name": "planetx-boilerplate-crater",
+  "author": "Florian Mettetal <florianmettetal.developer@gmail.com>",
+  "version": "0.0.1",
   "license": "ISC",
-  "description": "Meteor(/React) app skeleton that runs your app code with pure Webpack/Babel instead of isobuild",
+  "description": "PlanetX version of jcoreio/crater : Meteor(/React) app skeleton that builds your app with Webpack2/Babel instead of isobuild",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jedwards1211/crater.git"
+    "url": "git+https://github.com:Falieson/planetx-boilerplate-crater.git"
   },
-  "homepage": "https://github.com/jedwards1211/crater#readme",
+  "homepage": "https://github.com:Falieson/planetx-boilerplate-crater#readme",
   "bugs": {
-    "url": "https://github.com/jedwards1211/crater/issues"
+    "url": "https://github.com:Falieson/planetx-boilerplate-crater/issues"
   },
   "keywords": [
     "meteor",
@@ -38,25 +38,35 @@
     "debug-brk": "babel-node scripts/debug-brk.js",
     "debug": "babel-node scripts/debug.js",
     "docker": "babel-node scripts/docker.js",
-    "f": "npm run flow",
     "flow:watch": "flow-watch --watch flowlib/ --watch scripts/ --watch src/ --watch test/ --watch webpack/ --watch .flowconfig",
     "flow": "flow",
-    "fw": "npm run flow:watch",
-    "l": "npm run lint:fix",
     "lint:fix": "eslint --fix *.js src scripts test util webpack",
     "lint:watch": "esw -w *.js src scripts test util webpack",
     "lint": "eslint *.js src scripts test util webpack",
-    "lw": "npm run lint:watch",
     "prod:debug-brk": "babel-node scripts/prod-debug-brk.js",
     "prod:debug": "babel-node scripts/prod-debug.js",
     "prod": "babel-node scripts/prod.js",
-    "s": "npm run start",
     "start": "babel-node scripts/start.js",
     "test:dev": "wdio wdio.conf.js --mochaOpts.grep dev",
     "test:docker": "wdio wdio.conf.js --mochaOpts.grep docker",
     "test:hot-reloading": "wdio wdio.conf.js --mochaOpts.grep \"hot reloading\"",
     "test:prod": "wdio wdio.conf.js --mochaOpts.grep prod",
-    "test": "wdio wdio.conf.js"
+    "test": "wdio wdio.conf.js",
+    "b": "npm run build",
+    "bc": "npm run build:client",
+    "bd": "npm run build:docker",
+    "bm": "npm run build:meteor",
+    "bs": "npm run build:server",
+    "f": "npm run flow",
+    "fw": "npm run flow:watch",
+    "l": "npm run lint:fix",
+    "lw": "npm run lint:watch",
+    "s": "npm run start",
+    "t": "npm run test",
+    "td": "npm run test:dev",
+    "tdk": "npm run test:docker",
+    "thr": "npm run test:hot-reloading",
+    "tp": "npm run test:prod"
   },
   "pre-commit": [
     "lint",
