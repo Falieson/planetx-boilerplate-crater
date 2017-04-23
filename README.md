@@ -23,12 +23,12 @@
 
 # Documentation
 ```
-/project/
+/docs/
   ./PLANETX_CRATER_WALKTHROUGH.md         - Overview of the Repository (start with this or README.md)
   ./CRATER_README.md                      - Original `crater/README.md` - Boilerplate features, differences from MeteorJS
   ./CRATER_FAQ.md                         - My notes for how to use Crater
-/project/
-  ./ClientProjectDescription.html         - What they want me to accomplish
+/docs/project/
+  ./ProjectDescription.md                 - What it is the package is about
   ./FeaturePlan.md                        - How I think each piece should work
   ./StepsAndCommits.md                    - What I'm thinking along the way
   ./Bugs.md                               - Problems I'm deferring to fix
