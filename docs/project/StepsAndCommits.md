@@ -10,6 +10,8 @@
         - [git remotes](#git-remotes)
         - [git branches](#git-branches)
         - [create documentation](#create-documentation)
+        - [package shortcuts](#package-shortcuts)
+        - [package license](#package-license)
     - [INIT](#init)
     - [PRE-FLIGHT](#pre-flight)
         - [Running tests](#running-tests)
@@ -88,6 +90,31 @@ Deleted branch webpack2_for-pr_142-144-145 (was f051aaa).
 ~/C/P/P/planetx-boilerplate-crater (px_setup)❯❯❯ mv README.md docs/CRATER_README.md
 ~/C/P/P/planetx-boilerplate-crater (px_setup)❯❯❯ cp ..../docs/* doc      #doc template from draft repo
 ```
+
+#### package shortcuts
+3 or less letters for anything that needs to be ran often. Not sure about the build and test ones but I figured I might as well fill them out for now and trim it back after I know crater better.
+
+```
+    "b": "npm run build",
+    "bc": "npm run build:client",
+    "bd": "npm run build:docker",
+    "bm": "npm run build:meteor",
+    "bs": "npm run build:server",
+    "f": "npm run flow",
+    "fw": "npm run flow:watch",
+    "l": "npm run lint:fix",
+    "lw": "npm run lint:watch",
+    "s": "npm run start",
+    "t": "npm run test",
+    "td": "npm run test:dev",
+    "tdk": "npm run test:docker",
+    "thr": "npm run test:hot-reloading",
+    "tp": "npm run test:prod"
+```
+
+#### package license
+- Since Crater is ISC I'm going to use them. Createad `/LICENSE`
+- jcoreio/crater didn't have a license file so I created a [PR](https://github.com/jcoreio/crater/pull/147) and file `/docs/licenses/CRATER_LICENSE`
 
 
 ### INIT
