@@ -12,20 +12,20 @@ import buildDir from '../buildDir'
 const root = path.resolve(__dirname, '..')
 const assets = path.join(buildDir, 'assets.json')
 
-async function buildClient(): Promise<void> {
+async function buildClient (): Promise<void> {
   if (await isNewerThan(path.join(root, 'webpack', 'webpack.config.prod.js'), assets) ||
       await isNewerThan(path.join(root, 'src'), assets)) {
     console.log('building client bundle...')
     const compiler = webpack(webpackConfig)
     const stats = await promisify(compiler.run, compiler)()
     process.stdout.write(stats.toString({
-      colors: true,
-      modules: false,
+      colors      : true,
+      modules     : false,
       chunkModules: false,
-      chunks: true,
-      errorDetails: true,
+      chunks      : true,
+      errorDetails: true
     }) + "\n")
-    if (stats.toJson().errors.length) throw new Error("webpack build had errors")
+    if (stats.toJson().errors.length) {throw new Error("webpack build had errors")}
   } else {
     console.log('client assets are up to date')
   }

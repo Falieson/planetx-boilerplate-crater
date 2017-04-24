@@ -13,11 +13,12 @@
     "url": "https://github.com:Falieson/planetx-boilerplate-crater/issues"
   },
   "keywords": [
-    "meteor",
-    "babel",
-    "webpack",
     "react",
-    "crater"
+    "webpack2",
+    "meteor",
+    "planetx",
+    "crater",
+    "babel"
   ],
   "main": "index.js",
   "nyc": {
@@ -115,8 +116,13 @@
     "empty": "^0.10.1",
     "es6-promise": "^4.1.0",
     "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-import-resolver-babel-module": "^3.0.0",
     "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-compat": "^1.0.2",
     "eslint-plugin-flowtype": "^2.32.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-watch": "^3.1.0",
     "extract-text-webpack-plugin": "^2.1.0",

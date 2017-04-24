@@ -17,18 +17,18 @@ const root = path.resolve(__dirname, '..')
 process.env.NODE_ENV = 'production'
 process.env.USE_DOTENV = '1'
 
-async function prod(options?: {commandOptions?: Array<string>} = {}): Promise<any> {
+async function prod (options?: {commandOptions?: Array<string>} = {}): Promise<any> {
   await buildMeteor()
   await installMeteorDeps()
   await spawnAsync('babel', [path.join(root, 'src', 'index.js'), '-o', path.join(buildDir, 'index.js')], {
-    cwd: root,
-    stdio: 'inherit',
+    cwd  : root,
+    stdio: 'inherit'
   })
 
-  function launchWebpack(config: Object): Promise<void> {
+  function launchWebpack (config: Object): Promise<void> {
     return new Promise((_resolve: Function) => {
       let resolved = false
-      function resolve() {
+      function resolve () {
         if (!resolved) {
           resolved = true
           _resolve()
@@ -41,13 +41,13 @@ async function prod(options?: {commandOptions?: Array<string>} = {}): Promise<an
           return
         }
         process.stdout.write(stats.toString({
-          colors: true,
-          modules: false,
+          colors      : true,
+          modules     : false,
           chunkModules: false,
-          chunks: true,
-          errorDetails: true,
+          chunks      : true,
+          errorDetails: true
         }) + "\n")
-        if (stats.toJson().errors.length) return
+        if (stats.toJson().errors.length) {return}
         resolve()
       })
     })
@@ -56,8 +56,8 @@ async function prod(options?: {commandOptions?: Array<string>} = {}): Promise<an
   await Promise.all([launchWebpack(serverConfig), launchWebpack(clientConfig)])
 
   launch({
-    main: path.join(buildDir, 'index.js'),
-    commandOptions: options.commandOptions || [],
+    main          : path.join(buildDir, 'index.js'),
+    commandOptions: options.commandOptions || []
   })
 }
 
@@ -67,6 +67,6 @@ if (!module.parent) {
   process.on('SIGINT', (): any => process.exit(0))
   process.on('SIGTERM', (): any => process.exit(0))
   asyncScript(prod, {
-    exitOnSuccess: false,
+    exitOnSuccess: false
   })
 }

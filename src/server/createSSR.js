@@ -16,18 +16,18 @@ import type {IncomingMessage, ServerResponse} from 'http'
 import type {Store} from '../universal/flowtypes/redux'
 
 const __meteor_runtime_config__ = {
-  PUBLIC_SETTINGS: Meteor.settings.public || {},
-  ROOT_URL: process.env.ROOT_URL,
+  PUBLIC_SETTINGS     : Meteor.settings.public || {},
+  ROOT_URL            : process.env.ROOT_URL,
   // Not everything is in place to support basename right now (e.g. react-router history config, webpack config)
   // but might as well go ahead and use the correct value here anyway
   ROOT_URL_PATH_PREFIX: url.parse(process.env.ROOT_URL).pathname.substring(1),
-  meteorEnv: {
-    NODE_ENV: process.env.NODE_ENV,
+  meteorEnv           : {
+    NODE_ENV: process.env.NODE_ENV
   },
-  meteorRelease: Meteor.release,
+  meteorRelease: Meteor.release
 }
 
-function renderApp(res: ServerResponse, store: Store, assets?: Object, renderProps?: Object) {
+function renderApp (res: ServerResponse, store: Store, assets?: Object, renderProps?: Object) {
   const location = renderProps && renderProps.location && renderProps.location.pathname || '/'
   // Needed so some components can render based on location
   store.dispatch(push(location))
@@ -45,7 +45,7 @@ function renderApp(res: ServerResponse, store: Store, assets?: Object, renderPro
   htmlStream.on('end', (): void => res.end())
 }
 
-async function createSSR(req: IncomingMessage, res: ServerResponse): Promise<void> {
+async function createSSR (req: IncomingMessage, res: ServerResponse): Promise<void> {
   try {
     const store = createStore(makeReducer(), iMap())
     if (process.env.NODE_ENV === 'production') {
@@ -58,17 +58,18 @@ async function createSSR(req: IncomingMessage, res: ServerResponse): Promise<voi
       }
       const makeRoutes = require('../universal/routes').default
       const routes = makeRoutes(store)
-      match({routes, location: req.url}, (error: ?Error, redirectLocation: {pathname: string, search: string}, renderProps: ?Object) => {
-        if (error) {
-          res.status(500).send(error.message)
-        } else if (redirectLocation) {
-          res.redirect(redirectLocation.pathname + redirectLocation.search)
-        } else if (renderProps) {
-          renderApp(res, store, assets, renderProps)
-        } else {
-          res.status(404).send('Not found')
-        }
-      })
+      match({routes, location: req.url},
+        (error: ?Error, redirectLocation: {pathname: string, search: string}, renderProps: ?Object) => {
+          if (error) {
+            res.status(500).send(error.message)
+          } else if (redirectLocation) {
+            res.redirect(redirectLocation.pathname + redirectLocation.search)
+          } else if (renderProps) {
+            renderApp(res, store, assets, renderProps)
+          } else {
+            res.status(404).send('Not found')
+          }
+        })
     } else {
       // just send a cheap html doc + stringified store
       renderApp(res,  store)
