@@ -8,13 +8,24 @@
     }
   },
   "plugins": [
-    "babel", "compat", "flowtype", "react", "import"
+    "babel",
+    "compat",
+    "import",
+    "flowtype",
+    "lodash",
+    "react"
   ],
   "import/resolver": {
     "babel-module": {}
   },
   "import/core-modules": ["meteor/"],
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:flowtype/recommended",
+    "plugin:lodash/recommended"
+  ],
   "env": {
     "commonjs": true,
     "es6": true,

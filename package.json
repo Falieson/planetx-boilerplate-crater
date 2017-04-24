@@ -71,7 +71,8 @@
   },
   "pre-commit": [
     "lint",
-    "flow"
+    "flow",
+    "test:dev"
   ],
   "dependencies": {
     "babel-runtime": "^6.11.6",
@@ -100,9 +101,12 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^3.1.2",
     "babel-plugin-meteor-imports": "^1.0.3",
+    "babel-plugin-module-resolver": "^2.7.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-es2017": "^6.24.1",
     "babel-preset-flow": "^1.0.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
@@ -123,6 +127,7 @@
     "eslint-plugin-flowtype": "^2.32.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-lodash": "^2.4.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-watch": "^3.1.0",
     "extract-text-webpack-plugin": "^2.1.0",

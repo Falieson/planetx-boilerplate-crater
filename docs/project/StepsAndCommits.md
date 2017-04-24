@@ -5,6 +5,8 @@
     - [OPTIMIZATIONS (optional)](#optimizations-optional)
     - [IMPROVEMENTS](#improvements)
 - [COMPLETE ($sort: desc)](#complete-sort-desc)
+    - [FEATURE: BABEL](#feature-babel)
+    - [FEATURE: ESLINT](#feature-eslint)
     - [SETUP](#setup)
         - [Downloading](#downloading)
         - [git remotes](#git-remotes)
@@ -26,12 +28,24 @@
 <!-- /TOC -->
 # Steps
 ## TODO ($sort: asc)
-### FEATURE: MODULE ALIASING
+### CONFIG: WEBPACK
+- [ ] module aliases
+
 ### OPTIMIZATIONS (optional)
 ### IMPROVEMENTS
 
 
 ## COMPLETE ($sort: desc)
+### FEATURE: BABEL
+- [x] es2017
+- [x] es2017 decorators
+
+### FEATURE: ESLINT
+- [ ] install eslint lodash
+- [x] install eslint compat & jsx-a11y
+- [x] install eslint import
+- [x] add my rules
+- [x] add airbnb rules
 
 ### SETUP
 #### Downloading
@@ -162,9 +176,12 @@ Deleted branch webpack2_for-pr_142-144-145 (was f051aaa).
 ## Commit Thoughts ($sort: desc)
 ## Commit Status ($sort: asc)
 ### Done
-1. INIT & SETUP: Plan, Clone previous project, Clean for use as boilerplate
-1. FEATURE_EXPLORER-REQUEST: RequestHeader (endpoint, httpMethod, contentType)
+1. a258ef06 PX CONFIG babel
+1. 3c5a7266 PX CONFIG eslint
+1. 1172001a PX INIT fixed project steps log
+1. e0b9ba7c PX INIT add license
+1. 328c6404 PX INIT package script shortcuts
+1. 56aea139 PX INIT doc, project plan, PlanetX & Crater in
+
 ### Next
 ### Deferred
-
-
