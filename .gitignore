@@ -1,6 +1,11 @@
+.DS_Store
 .happypack
-node_modules
-build
-errorShots
-coverage
+.meteor/dev_bundle/
+.meteor/local/
 .nyc_output
+build
+coverage
+errorShots
+node_modules
+npm-debug.log*
+yarn.lock
