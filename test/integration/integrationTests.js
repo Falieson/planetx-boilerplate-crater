@@ -1,3 +1,6 @@
+/* eslint max-len:0 */
+/* eslint no-unused-expressions:0 */
+
 import {expect, assert} from 'chai'
 import exec from 'crater-util/lib/exec'
 import {childPrinted} from 'async-child-process'
@@ -21,22 +24,22 @@ const webpack = path.join(root, 'webpack')
 
 /* global browser: false */
 
-function delay(ms) {
+function delay (ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-function sharedTests() {
-  it('serves page with correct title', async function () {
+function sharedTests () {
+  it('serves page with correct title', async () => {
     expect(await browser.getTitle()).to.equal('Crater')
   })
-  it('serves page with correct header', async function () {
+  it('serves page with correct header', async () => {
     expect(await browser.getText('h1')).to.equal('Welcome to Crater!')
   })
-  it('serves up client css', async function () {
+  it('serves up client css', async () => {
     const color = await browser.getCssProperty('h1', 'color')
     expect(color.parsed.hex).to.equal('#333333')
   })
-  it('updates the counter', async function () {
+  it('updates the counter', async () => {
     const getCounter = async () => {
       const text = await browser.getText('.counter')
       const match = /(\d+)/.exec(text)
@@ -47,20 +50,20 @@ function sharedTests() {
     await delay(2000)
     expect(await getCounter()).to.be.above(initCounter)
   })
-  it('sends Meteor.settings.public to the client', async function () {
+  it('sends Meteor.settings.public to the client', async () => {
     expect(await browser.getText('.settings-test')).to.equal('success')
   })
 }
 
-function unlinkIfExists(path, callback) {
+function unlinkIfExists (path, callback) {
   return fs.unlink(path, (err, result) => {
-    if (err && /ENOENT/.test(err.message)) err = null
+    if (err && /ENOENT/.test(err.message)) {err = null} //eslint-disable-line no-param-reassign
     return callback(err, result)
   })
 }
 
 // istanbul ignore next
-async function mergeClientCoverage() {
+async function mergeClientCoverage () {
   if (process.env.BABEL_ENV === 'coverage') {
     const collector = new Collector()
 
@@ -72,7 +75,7 @@ async function mergeClientCoverage() {
   }
 }
 
-async function navigateTo(url) {
+async function navigateTo (url) {
   if (process.env.DUMP_HTTP) {
     const popsicle = require('popsicle')
     const res = await popsicle.get(url)
@@ -85,16 +88,16 @@ async function navigateTo(url) {
   await browser.url(url)
 }
 
-async function logBrowserMessages() {
+async function logBrowserMessages () {
   const logs = (await browser.log('browser')).value
-  if (!logs) return
+  if (!logs) {return}
   logs.forEach(({level, message, timestamp}) => {
     const time = new Date(timestamp).toLocaleTimeString()
     browserLogsDebug(`${time} ${level} ${message}`)
   })
 }
 
-describe('prod mode', function () {
+describe('prod mode', () => {
   let server
   const appFile = path.join(src, 'universal', 'components', 'App.js')
   const serverFile = path.join(src, 'server', 'index.js')
@@ -112,18 +115,18 @@ describe('prod mode', function () {
 
   after(async function () {
     this.timeout(600000)
-    if (process.env.BABEL_ENV === 'coverage') await mergeClientCoverage()
-    if (server) await kill(server, 'SIGINT')
+    if (process.env.BABEL_ENV === 'coverage') {await mergeClientCoverage()}
+    if (server) {await kill(server, 'SIGINT')}
     // restore code in App.js, which (may) have been changed by hot reloading test
-    if (appCode) await promisify(fs.writeFile)(appFile, appCode, 'utf8')
-    if (serverCode) await promisify(fs.writeFile)(serverFile, serverCode, 'utf8')
+    if (appCode) {await promisify(fs.writeFile)(appFile, appCode, 'utf8')}
+    if (serverCode) {await promisify(fs.writeFile)(serverFile, serverCode, 'utf8')}
     await logBrowserMessages()
   })
 
   sharedTests()
 
   if (process.env.BABEL_ENV !== 'coverage') {
-    describe('hot reloading', function () {
+    describe('hot reloading', () => {
       it('server restarts when code is changed', async function () {
         this.timeout(60000)
         const serverModified = serverCode.replace(/express\(\)/, 'express()\napp.get("/test", (req, res) => res.send("hello world"))')
@@ -139,7 +142,7 @@ describe('prod mode', function () {
   }
 })
 
-describe('prod mode with DISABLE_FULL_SSR=1', function () {
+describe('prod mode with DISABLE_FULL_SSR=1', () => {
   let server
 
   before(async function () {
@@ -147,8 +150,8 @@ describe('prod mode with DISABLE_FULL_SSR=1', function () {
     server = exec('npm run prod', {
       env: {
         ...process.env,
-        DISABLE_FULL_SSR: '1',
-      },
+        DISABLE_FULL_SSR: '1'
+      }
     })
     await childPrinted(server, /App is listening on http/i)
     await browser.reload()
@@ -166,13 +169,13 @@ describe('prod mode with DISABLE_FULL_SSR=1', function () {
 
   after(async function () {
     this.timeout(30000)
-    if (process.env.BABEL_ENV === 'coverage') await mergeClientCoverage()
-    if (server) await kill(server, 'SIGINT')
+    if (process.env.BABEL_ENV === 'coverage') {await mergeClientCoverage()}
+    if (server) {await kill(server, 'SIGINT')}
     await logBrowserMessages()
   })
 })
 
-describe('docker build', function () {
+describe('docker build', () => {
   let server
 
   before(async function () {
@@ -193,8 +196,7 @@ describe('docker build', function () {
     })
     await childPrinted(server, /App is listening on http/i)
     let host
-    if (process.env.CI) host = (await execAsync('docker-compose port crater 80', {cwd: root})).stdout.trim()
-    else {
+    if (process.env.CI) {host = (await execAsync('docker-compose port crater 80', {cwd: root})).stdout.trim()}    else {
       await execAsync('which docker-machine')
         .then(() => host = `192.168.99.100:${process.env.PORT}`)
         .catch(() => host = `localhost:${process.env.PORT}`)
@@ -205,7 +207,7 @@ describe('docker build', function () {
 
   after(async function () {
     this.timeout(20000)
-    if (process.env.BABEL_ENV === 'coverage') await mergeClientCoverage()
+    if (process.env.BABEL_ENV === 'coverage') {await mergeClientCoverage()}
     await spawnAsync('docker-compose', ['down'], {cwd: root})
     await logBrowserMessages()
   })
@@ -213,7 +215,7 @@ describe('docker build', function () {
   sharedTests()
 })
 
-describe('dev mode', function () {
+describe('dev mode', () => {
   let server
 
   const appFile = path.join(src, 'universal', 'components', 'App.js')
@@ -227,25 +229,25 @@ describe('dev mode', function () {
     server = exec('npm start', {cwd: root})
     await Promise.all([
       childPrinted(server, /webpack built [a-z0-9]+ in \d+ms/i),
-      childPrinted(server, /App is listening on http/i),
+      childPrinted(server, /App is listening on http/i)
     ])
     await navigateTo(`http://localhost:${webpackConfig.devServer.port}`)
   })
 
   after(async function () {
     this.timeout(15 * 60000)
-    if (process.env.BABEL_ENV === 'coverage') await mergeClientCoverage()
-    if (server) await kill(server, 'SIGINT')
+    if (process.env.BABEL_ENV === 'coverage') {await mergeClientCoverage()}
+    if (server) {await kill(server, 'SIGINT')}
     // restore code in App.js, which (may) have been changed by hot reloading test
-    if (appCode) await promisify(fs.writeFile)(appFile, appCode, 'utf8')
-    if (serverCode) await promisify(fs.writeFile)(serverFile, serverCode, 'utf8')
+    if (appCode) {await promisify(fs.writeFile)(appFile, appCode, 'utf8')}
+    if (serverCode) {await promisify(fs.writeFile)(serverFile, serverCode, 'utf8')}
     await logBrowserMessages()
   })
 
   sharedTests()
 
   if (process.env.BABEL_ENV !== 'coverage') {
-    describe('hot reloading', function () {
+    describe('hot reloading', () => {
       it('works on the client', async function () {
         this.timeout(40000)
         const newHeader = 'Welcome to Crater! with hot reloading'
@@ -268,8 +270,8 @@ describe('dev mode', function () {
   }
 })
 
-describe('build scripts', function () {
-  describe('build:meteor', function () {
+describe('build scripts', () => {
+  describe('build:meteor', () => {
     it('only rebuilds when necessary', async function () {
       this.timeout(480000)
 
@@ -283,7 +285,7 @@ describe('build scripts', function () {
       expect(/build\/meteor is up to date/i.test((await execAsync('npm run build:meteor', {cwd: root})).stdout)).to.be.true
     })
   })
-  describe('build:client', function () {
+  describe('build:client', () => {
     it('only rebuilds when necessary', async function () {
       this.timeout(480000)
 
@@ -299,7 +301,7 @@ describe('build scripts', function () {
       expect(/client assets are up to date/.test((await execAsync('npm run build:client', {cwd: root})).stdout)).to.be.true
     })
   })
-  describe('build:server', function () {
+  describe('build:server', () => {
     it('only rebuilds when necessary', async function () {
       this.timeout(480000)
 

@@ -8,11 +8,11 @@ import buildDir from '../buildDir'
 
 const programsServer = path.join(buildDir, 'meteor', 'bundle', 'programs', 'server')
 
-async function installMeteorDeps(): Promise<any> {
+async function installMeteorDeps (): Promise<any> {
   if (!(await isDirectory(path.join(programsServer, 'node_modules')))) {
     console.log('installing Meteor npm dependencies...')
     await spawnAsync('npm', ['install'], {
-      cwd: programsServer,
+      cwd  : programsServer,
       stdio: 'inherit'
     })
   } else {

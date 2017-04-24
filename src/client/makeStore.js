@@ -12,7 +12,7 @@ export default (initialState: iMap<string, any>): Store => {
   const reducer = makeReducer()
   const reduxRouterMiddleware = routerMiddleware(browserHistory)
   const middlewares = [
-    reduxRouterMiddleware,
+    reduxRouterMiddleware
   ]
 
   if (process.env.NODE_ENV === 'production') {
@@ -23,8 +23,8 @@ export default (initialState: iMap<string, any>): Store => {
       // We don't have the Redux extension in the browser, show the Redux logger
       const createLogger = require('redux-logger')
       const logger = createLogger({
-        level: 'info',
-        collapsed: true,
+        level    : 'info',
+        collapsed: true
       })
       middlewares.push(logger)
     }

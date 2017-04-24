@@ -14,19 +14,19 @@ import buildDir from '../buildDir'
 const root = path.resolve(__dirname, '..')
 const meteor = path.join(root, 'meteor')
 
-async function buildMeteor(): Promise<void> {
+async function buildMeteor (): Promise<void> {
   await promisify(mkdirp)(buildDir)
   if (await isNewerThan([
     ...await promisify(glob)(path.join(meteor, '**')),
     path.join(meteor, '.meteor', 'packages'),
     path.join(meteor, '.meteor', 'platforms'),
     path.join(meteor, '.meteor', 'release'),
-    path.join(meteor, '.meteor', 'versions'),
+    path.join(meteor, '.meteor', 'versions')
   ], path.join(buildDir, 'meteor'))) {
     console.log('building Meteor packages...')
     await promisify(rimraf)(path.join(buildDir, 'meteor'))
     await spawnAsync('meteor', ['build', path.join(path.relative(meteor, buildDir), 'meteor'), '--directory'], {
-      cwd: meteor,
+      cwd  : meteor,
       stdio: 'inherit'
     })
   } else {

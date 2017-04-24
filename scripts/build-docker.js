@@ -13,7 +13,7 @@ const root = path.resolve(__dirname, '..')
 process.on('SIGINT', (): any => process.exit(1))
 
 const opts = {
-  cwd: root,
+  cwd  : root,
   stdio: 'inherit'
 }
 

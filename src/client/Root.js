@@ -16,7 +16,7 @@ export default class Root extends Component<void,Props,void> {
     store: PropTypes.object.isRequired
   }
 
-  render(): React.Element<any> {
+  render (): React.Element<any> {
     const {store} = this.props
     const history = syncHistoryWithStore(browserHistory, store, {
       selectLocationState: (state: State): Object => state.get('router')

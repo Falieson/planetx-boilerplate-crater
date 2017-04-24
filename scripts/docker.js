@@ -17,9 +17,9 @@ asyncScript(async (): Promise<any> => {
       ...process.env,
       NAME,
       ROOT_URL: 'http://localhost:3000',
-      TAG: commitHash,
+      TAG     : commitHash
     },
-    cwd: root,
-    stdio: 'inherit',
+    cwd  : root,
+    stdio: 'inherit'
   })
 })

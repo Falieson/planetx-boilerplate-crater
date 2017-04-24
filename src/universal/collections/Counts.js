@@ -9,7 +9,7 @@ export default Counts
 
 if (Meteor.isServer) {
   Meteor.publish({
-    counts(_id: string): Mongo.Cursor {
+    counts (_id: string): Mongo.Cursor {
       Counts.upsert({_id}, {$set: {value: 0}})
       this.ready()
       const interval = Meteor.setInterval(() => {

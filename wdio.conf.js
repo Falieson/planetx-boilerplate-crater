@@ -12,7 +12,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
   specs: [
-    './test/integration/**/*.js',
+    './test/integration/**/*.js'
   ],
     // Patterns to exclude.
   exclude: [
@@ -46,7 +46,7 @@ exports.config = {
         // 5 instance gets started at a time.
     maxInstances: 5,
         //
-    browserName: 'phantomjs',
+    browserName : 'phantomjs'
   }],
     //
     // ===================
@@ -57,30 +57,30 @@ exports.config = {
     // By default WebdriverIO commands are executed in a synchronous way using
     // the wdio-sync package. If you still want to run your tests in an async way
     // e.g. using promises you can set the sync option to false.
-  sync: true,
+  sync                  : true,
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
-  logLevel: 'command',
+  logLevel              : 'command',
     //
     // Enables colors for log output.
-  coloredLogs: true,
+  coloredLogs           : true,
     //
     // Saves a screenshot to a given path if a command fails.
-  screenshotPath: './errorShots/',
+  screenshotPath        : './errorShots/',
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-  baseUrl: process.env.ROOT_URL,
+  baseUrl               : process.env.ROOT_URL,
     //
     // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
+  waitforTimeout        : 10000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
   connectionRetryTimeout: 90000,
     //
     // Default request retries count
-  connectionRetryCount: 3,
+  connectionRetryCount  : 3,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as properties. Make sure you have
@@ -104,9 +104,9 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: [
-      'phantomjs'
-    ],
+  services              : [
+    'phantomjs'
+  ],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -124,9 +124,9 @@ exports.config = {
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
   mochaOpts: {
-    ui: 'bdd',
-    compilers: ['js:babel-core/register'],
-  },
+    ui       : 'bdd',
+    compilers: ['js:babel-core/register']
+  }
     //
     // =====
     // Hooks

@@ -2,7 +2,7 @@ import {Map as iMap} from 'immutable'
 import type {
   Store as _Store,
   Reducer as _Reducer,
-  Dispatch as _Dispatch,
+  Dispatch as _Dispatch
 } from 'redux'
 
 export type State = iMap<string, any>

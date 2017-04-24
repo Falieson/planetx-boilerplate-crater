@@ -1,5 +1,6 @@
 /* @flow */
 /* eslint react/no-danger:0 */
+/* eslint react/no-unused-prop-types:0 */
 import React, {Component, PropTypes} from 'react'
 import {Provider} from 'react-redux'
 import {RouterContext} from 'react-router'
@@ -9,15 +10,15 @@ import {renderToString} from 'react-dom-stream/server'
 export default class Html extends Component {
   static propTypes = {
     __meteor_runtime_config__: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired,
-    assets: PropTypes.object,
-    env: PropTypes.object,
-    settings: PropTypes.object,
-    renderProps: PropTypes.object,
+    store                    : PropTypes.object.isRequired,
+    title                    : PropTypes.string.isRequired,
+    assets                   : PropTypes.object,
+    env                      : PropTypes.object,
+    settings                 : PropTypes.object,
+    renderProps              : PropTypes.object
   }
 
-  render(): React.Element<any> {
+  render (): React.Element<any> {
     const PROD = process.env.NODE_ENV === 'production'
     const {title, __meteor_runtime_config__, store, assets, renderProps} = this.props
     const {manifest, app, vendor, meteor} = assets || {}

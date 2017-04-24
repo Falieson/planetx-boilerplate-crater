@@ -7,14 +7,14 @@ import { Map as iMap } from 'immutable'
 import makeStore from './makeStore'
 import Root from './Root'
 
-if (process.env.NODE_ENV !== 'production') require('es6-promise').polyfill()
+if (process.env.NODE_ENV !== 'production') {require('es6-promise').polyfill()}
 
 Meteor.startup(() => {
   const { router } = window.__INITIAL_STATE__
 
   // routing is currently a regualr JS object. This may change in the future
   const initialState = iMap({
-    router,
+    router
   })
 
   const store = makeStore(initialState)

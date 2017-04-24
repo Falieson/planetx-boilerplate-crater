@@ -15,26 +15,26 @@ const globalCSS = path.join(srcDir, 'styles', 'global')
 const config = {
   context: root,
   devtool: 'source-map',
-  entry: {
-    prerender: './src/server',
+  entry  : {
+    prerender: './src/server'
   },
   target: 'node',
-  node: {
-    __dirname: false,
-    __filename: false,
+  node  : {
+    __dirname : false,
+    __filename: false
   },
   output: {
-    path: buildDir,
+    path         : buildDir,
     chunkFilename: '[name]_[chunkhash].js',
-    filename: '[name].js',
+    filename     : '[name].js',
     libraryTarget: 'commonjs2',
-    publicPath: '/static/',
+    publicPath   : '/static/'
   },
   // ignore anything that throws warnings & doesn't affect the view
   externals: [
     nodeExternals({
-      modulesDir: path.join(root, 'node_modules'),
-    }),
+      modulesDir: path.join(root, 'node_modules')
+    })
     // (context: string, request: string, callback: (error?: ?Error, result?: ?string) => any): any => {
     //   const match = /^meteor\/(.*)$/.exec(request)
     //   if (match) {
@@ -48,20 +48,20 @@ const config = {
     new ExtractTextPlugin('/static/[name].css'),
     new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}),
     new webpack.DefinePlugin({
-      '__CLIENT__': false,
-      '__PRODUCTION__': true,
-      'Meteor.isClient': false,
-      'Meteor.isCordova': false,
-      'Meteor.isServer': true,
-      'process.env.TARGET': JSON.stringify(process.env.TARGET),
-      'process.env.NODE_ENV': JSON.stringify('production'),
+      '__CLIENT__'          : false,
+      '__PRODUCTION__'      : true,
+      'Meteor.isClient'     : false,
+      'Meteor.isCordova'    : false,
+      'Meteor.isServer'     : true,
+      'process.env.TARGET'  : JSON.stringify(process.env.TARGET),
+      'process.env.NODE_ENV': JSON.stringify('production')
       // uncomment this line to hard-disable full SSR
       // 'process.env.DISABLE_FULL_SSR': JSON.stringify('1'),
     }),
     new HappyPack({
-      cache: false,
+      cache  : false,
       loaders: [{
-        path: 'babel-loader',
+        path   : 'babel-loader',
         options: {
           "presets": [["es2015", {loose: true, modules: false}], "stage-1", "react", "flow"],
           "plugins": [
@@ -77,8 +77,8 @@ const config = {
           }
         }
       }],
-      threads: 4,
-    }),
+      threads: 4
+    })
   ],
   module: {
     loaders: [
@@ -88,42 +88,42 @@ const config = {
       {test: /\.(eot|ttf|wav|mp3)$/, loader: 'file-loader'},
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
+        use : ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
+          use     : [
             {
-              loader: 'css-loader',
+              loader : 'css-loader',
               options: {
-                modules: true,
-                importLoaders: 1,
-                localIdentName: '[name]_[local]_[hash:base64:5]',
+                modules       : true,
+                importLoaders : 1,
+                localIdentName: '[name]_[local]_[hash:base64:5]'
               }
             },
-            {loader: 'postcss-loader'},
+            {loader: 'postcss-loader'}
           ]
         }),
         include: srcDir,
-        exclude: globalCSS,
+        exclude: globalCSS
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
+        use : ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: "css-loader"
+          use     : "css-loader"
         }),
-        include: globalCSS,
+        include: globalCSS
       },
       {
-        test: /\.js$/,
-        loader: 'happypack/loader',
-        include: srcDir,
-      },
-    ],
-  },
+        test   : /\.js$/,
+        loader : 'happypack/loader',
+        include: srcDir
+      }
+    ]
+  }
 }
 
 /* istanbul ignore next */
-if (!process.env.CI) config.plugins.push(new ProgressBarPlugin())
+if (!process.env.CI) {config.plugins.push(new ProgressBarPlugin())}
 if (process.argv.indexOf('--no-uglify') < 0) {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     compressor: { warnings: false }

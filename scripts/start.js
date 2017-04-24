@@ -13,7 +13,7 @@ process.env.USE_DOTENV = '1'
 const root = path.resolve(__dirname, '..')
 const src = path.join(root, 'src')
 
-async function start(options?: {commandOptions?: Array<any>} = {}): Promise<any> {
+async function start (options?: {commandOptions?: Array<any>} = {}): Promise<any> {
   if (process.argv.indexOf('--fast') < 0) {
     await buildMeteor()
     await installMeteorDeps()
@@ -21,7 +21,7 @@ async function start(options?: {commandOptions?: Array<any>} = {}): Promise<any>
   require('./devServer')
   launch({
     commandOptions: options.commandOptions || [],
-    main: path.join(src, 'index.js'),
+    main          : path.join(src, 'index.js')
   })
 }
 
@@ -31,7 +31,7 @@ if (!module.parent) {
   process.on('SIGINT', (): any => process.exit(0))
   process.on('SIGTERM', (): any => process.exit(0))
   asyncScript(start, {
-    exitOnSuccess: false,
+    exitOnSuccess: false
   })
 }
 
