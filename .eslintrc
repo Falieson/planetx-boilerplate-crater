@@ -1,97 +1,11 @@
 {
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "allowImportExportEverywhere": false,
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "plugins": [
-    "babel",
-    "compat",
-    "import",
-    "flowtype",
-    "lodash",
-    "react"
-  ],
-  "import/resolver": {
-    "babel-module": {}
-  },
-  "import/core-modules": ["meteor/"],
-  "extends": [
-    "airbnb",
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:flowtype/recommended",
-    "plugin:lodash/recommended"
-  ],
-  "env": {
-    "commonjs": true,
-    "es6": true,
-    "node": true,
-    "mongo": true
-  },
-  "globals": {
-    "window": true,
-    "document": true
-  },
+  "extends": "planetx",
   "rules": {
-    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
-    "class-methods-use-this": 0,
-    "comma-dangle": [2, "never"],
-    "compat/compat": 2,
-    "curly": [2, "all"],
-    "flowtype/boolean-style": [2, "boolean"],
-    "flowtype/define-flow-type": 1,
-    "flowtype/generic-spacing": [2, "never"],
-    "flowtype/require-parameter-type": 2,
-    "flowtype/require-return-type": [2, "always", { "annotateUndefined": "never" }],
-    "flowtype/require-valid-file-annotation": 2,
-    "flowtype/semi": [2, "never"],
-    "flowtype/space-after-type-colon": [2, "always"],
-    "flowtype/space-before-generic-bracket": [2, "never"],
-    "flowtype/space-before-type-colon": [2, "never"],
-    "flowtype/union-intersection-spacing": [2, "always"],
-    "flowtype/use-flow-type": 1,
-    "flowtype/valid-syntax": 1,
-    "func-names": 0,
-    "import/extensions": [0, "always", { "js": "never", "jsx": "never" }],
-    "import/first": 0,
+    "import/no-dynamic-require": 0,
     "import/no-extraneous-dependencies": 0,
-    "import/no-unresolved": [0, { "ignore": ["^meteor/"] }],
-    "import/prefer-default-export": 1,
-    "indent": [2, 2, { "SwitchCase": 1 }],
-    "key-spacing": [2, { "align": "colon" }],
-    "keyword-spacing": 0,
-    "linebreak-style": 1,
-    "max-len": [1, 120],
-    "no-case-declarations": 0,
-    "no-cond-assign": 2,
-    "no-console": [1, { "allow": ["warn", "error"] }],
-    "no-extra-semi": "error",
-    "no-param-reassign": 2,
-    "no-underscore-dangle": 0,
-    "no-unused-expressions": [2, { "allowShortCircuit": true }],
-    "no-unused-vars": [2, { "args": "all", "varsIgnorePattern": "[mM]eteor" }],
-    "no-use-before-define": [2, { "functions": false, "classes": true }],
-    "padding-blocks": 0,
-    "prefer-arrow-callback": 1,
-    "prefer-destructuring": [2, { "array": false, "object": true }, { "enforceForRenamedProperties": false }],
-    "prefer-spread": 2,
-    "react/jsx-filename-extension": 0,
-    "react/no-danger": 1,
-    "react/no-find-dom-node": 1,
-    "react/no-string-refs": 2,
-    "react/no-unused-prop-types": 1,
-    "react/prop-types": 1,
-    "react/sort-comp": 1,
-    "semi": ["error", "never"],
-    "space-before-function-paren": 1
-  },
-  "settings": {
-    "flowtype": {
-      "onlyFilesWithFlowAnnotation": false
-    }
+    "import/no-nodejs-modules": 0,
+    "import/no-commonjs": 0,
+    "import/unambiguous": 0,
+    "global-require": 0
   }
 }

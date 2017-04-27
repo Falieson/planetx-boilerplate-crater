@@ -8,12 +8,15 @@
     - [ ] settings.test.json :: meteor server settings
     
 - ESLint
+    - [x] modularized into package `eslint-config-planetx`
     - [x] es2017 preferences
-    - [ ] modularize into package `eslint-config-planetx`
+
 - Babel
     - [x] es2017 support
+
 - Webpack
     - [ ] module aliases
+
 - Flowtype
     - [ ] react
     - [ ] javascript
