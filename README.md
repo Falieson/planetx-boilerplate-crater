@@ -27,6 +27,7 @@
   ./PLANETX_CRATER_WALKTHROUGH.md         - Overview of the Repository (start with this or README.md)
   ./CRATER_README.md                      - Original `crater/README.md` - Boilerplate features, differences from MeteorJS
   ./CRATER_FAQ.md                         - My notes for how to use Crater
+  ./CHANGELOG.md                          - Changes by version number
 /docs/project/
   ./ProjectDescription.md                 - What it is the package is about
   ./FeaturePlan.md                        - How I think each piece should work

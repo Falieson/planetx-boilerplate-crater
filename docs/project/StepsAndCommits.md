@@ -1,29 +1,29 @@
 <!-- TOC depthFrom:2 depthTo:4 orderedList:false updateOnSave:true withLinks:true -->
 
 - [TODO ($sort: asc)](#todo-sort-asc)
-    - [FEATURE: MODULE ALIASING](#feature-module-aliasing)
-    - [OPTIMIZATIONS (optional)](#optimizations-optional)
-    - [IMPROVEMENTS](#improvements)
+  - [CONFIG: WEBPACK](#config-webpack)
+  - [OPTIMIZATIONS (optional)](#optimizations-optional)
+  - [IMPROVEMENTS](#improvements)
 - [COMPLETE ($sort: desc)](#complete-sort-desc)
-    - [FEATURE: BABEL](#feature-babel)
-    - [FEATURE: ESLINT](#feature-eslint)
-    - [SETUP](#setup)
-        - [Downloading](#downloading)
-        - [git remotes](#git-remotes)
-        - [git branches](#git-branches)
-        - [create documentation](#create-documentation)
-        - [package shortcuts](#package-shortcuts)
-        - [package license](#package-license)
-    - [INIT](#init)
-    - [PRE-FLIGHT](#pre-flight)
-        - [Running tests](#running-tests)
-        - [Adding some of my MRs to #master to #webpack2](#adding-some-of-my-mrs-to-master-to-webpack2)
-        - [Differences between crater#master and crater#webpack2](#differences-between-cratermaster-and-craterwebpack2)
+  - [FEATURE: BABEL](#feature-babel)
+  - [FEATURE: ESLINT](#feature-eslint)
+  - [SETUP](#setup)
+    - [Downloading](#downloading)
+    - [git remotes](#git-remotes)
+    - [git branches](#git-branches)
+    - [create documentation](#create-documentation)
+    - [package shortcuts](#package-shortcuts)
+    - [package license](#package-license)
+  - [INIT](#init)
+  - [PRE-FLIGHT](#pre-flight)
+    - [Running tests](#running-tests)
+    - [Adding some of my MRs to #master to #webpack2](#adding-some-of-my-mrs-to-master-to-webpack2)
+    - [Differences between crater#master and crater#webpack2](#differences-between-cratermaster-and-craterwebpack2)
 - [Commit Thoughts ($sort: desc)](#commit-thoughts-sort-desc)
 - [Commit Status ($sort: asc)](#commit-status-sort-asc)
-    - [Done](#done)
-    - [Next](#next)
-    - [Deferred](#deferred)
+  - [Done](#done)
+  - [Next](#next)
+  - [Deferred](#deferred)
 
 <!-- /TOC -->
 # Steps
@@ -41,7 +41,8 @@
 - [x] es2017 decorators
 
 ### FEATURE: ESLINT
-- [ ] install eslint lodash
+- [x] refactored everything out into [eslint-config-planetx](/falieson/eslint-config-planetx)
+- [x] install eslint lodash
 - [x] install eslint compat & jsx-a11y
 - [x] install eslint import
 - [x] add my rules
@@ -176,8 +177,8 @@ Deleted branch webpack2_for-pr_142-144-145 (was f051aaa).
 ## Commit Thoughts ($sort: desc)
 ## Commit Status ($sort: asc)
 ### Done
-1. a258ef06 PX CONFIG babel
-1. 3c5a7266 PX CONFIG eslint
+1. 267ba066 PX BABEL - INIT
+1. 09617eb9 PX ESLINT - INIT
 1. 1172001a PX INIT fixed project steps log
 1. e0b9ba7c PX INIT add license
 1. 328c6404 PX INIT package script shortcuts
