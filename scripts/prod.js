@@ -17,7 +17,7 @@ const root = path.resolve(__dirname, '..')
 process.env.NODE_ENV = 'production'
 process.env.USE_DOTENV = '1'
 
-async function prod (options?: {commandOptions?: Array<string>} = {}): Promise<any> {
+async function prod(options?: {commandOptions?: Array<string>} = {}): Promise<any> {
   await buildMeteor()
   await installMeteorDeps()
   await spawnAsync('babel', [path.join(root, 'src', 'index.js'), '-o', path.join(buildDir, 'index.js')], {
@@ -25,10 +25,10 @@ async function prod (options?: {commandOptions?: Array<string>} = {}): Promise<a
     stdio: 'inherit'
   })
 
-  function launchWebpack (config: Object): Promise<void> {
+  function launchWebpack(config: Object): Promise<void> {
     return new Promise((_resolve: Function) => {
       let resolved = false
-      function resolve () {
+      function resolve() {
         if (!resolved) {
           resolved = true
           _resolve()
@@ -40,14 +40,14 @@ async function prod (options?: {commandOptions?: Array<string>} = {}): Promise<a
           console.error(err.stack)
           return
         }
-        process.stdout.write(stats.toString({
+        process.stdout.write(`${stats.toString({
           colors      : true,
           modules     : false,
           chunkModules: false,
           chunks      : true,
           errorDetails: true
-        }) + "\n")
-        if (stats.toJson().errors.length) {return}
+        })}\n`)
+        if (stats.toJson().errors.length) { return }
         resolve()
       })
     })

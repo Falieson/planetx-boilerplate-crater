@@ -1,32 +1,32 @@
 // @flow
 
-import React, {Component} from 'react'
-import {Meteor} from 'meteor/meteor'
+import React, { Component } from 'react'
+import { Meteor } from 'meteor/meteor'
 import Counts from '../collections/Counts'
 
 import styles from './App.css'
 
 export default class App extends Component {
-  state = {value: 0};
-  observer: ?{stop: Function}; //eslint-disable-line react/sort-comp
+  state = { value: 0 };
+  observer: ?{stop: Function}; // eslint-disable-line react/sort-comp
   sub: ?{stop: Function};
 
-  componentWillMount () {
+  componentWillMount() {
     if (Meteor.isClient) {
       this.sub = Meteor.subscribe('counts', 'a')
-      this.observer = Counts.find({_id: 'a'}).observeChanges({
-        added  : (id: string, fields: Object): any => this.setState(fields), //eslint-disable-line no-unused-vars
-        changed: (id: string, fields: Object): any => this.setState(fields) //eslint-disable-line no-unused-vars
+      this.observer = Counts.find({ _id: 'a' }).observeChanges({
+        added  : (id: string, fields: Object): any => this.setState(fields), // eslint-disable-line no-unused-vars
+        changed: (id: string, fields: Object): any => this.setState(fields) // eslint-disable-line no-unused-vars
       })
     }
   }
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (Meteor.isClient) {
-      if (this.observer != null) {this.observer.stop()}
-      if (this.sub != null) {this.sub.stop()}
+      if (this.observer != null) { this.observer.stop() }
+      if (this.sub != null) { this.sub.stop() }
     }
   }
-  render (): React.Element<any> {
+  render(): React.Element<any> {
     return (
       <div className={styles.app}>
         <h1>Welcome to Crater!</h1>

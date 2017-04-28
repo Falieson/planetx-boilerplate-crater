@@ -10,4 +10,4 @@ process.on('SIGINT', (): any => process.exit(1))
 prod({
   commandOptions: ['--debug']
 })
-spawn('node-inspector', [], {cwd: path.resolve(__dirname, '..'), stdio: 'inherit'})
+spawn('node-inspector', [], { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' })

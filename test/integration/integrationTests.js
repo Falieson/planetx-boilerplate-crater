@@ -1,9 +1,9 @@
 /* eslint max-len:0 */
 /* eslint no-unused-expressions:0 */
 
-import {expect, assert} from 'chai'
+import { expect, assert } from 'chai'
 import exec from 'crater-util/lib/exec'
-import {childPrinted} from 'async-child-process'
+import { childPrinted } from 'async-child-process'
 import kill from 'crater-util/lib/kill'
 import spawnAsync from 'crater-util/lib/spawnAsync'
 import execAsync from 'crater-util/lib/execAsync'
@@ -11,7 +11,7 @@ import path from 'path'
 import fs from 'fs'
 import rimraf from 'rimraf'
 import promisify from 'es6-promisify'
-import {Collector} from 'istanbul'
+import { Collector } from 'istanbul'
 import webpackConfig from '../../webpack/webpack.config.dev'
 import debug from 'debug'
 
@@ -24,11 +24,11 @@ const webpack = path.join(root, 'webpack')
 
 /* global browser: false */
 
-function delay (ms) {
+function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-function sharedTests () {
+function sharedTests() {
   it('serves page with correct title', async () => {
     expect(await browser.getTitle()).to.equal('Crater')
   })
@@ -43,7 +43,7 @@ function sharedTests () {
     const getCounter = async () => {
       const text = await browser.getText('.counter')
       const match = /(\d+)/.exec(text)
-      return match && parseInt(match[1])
+      return match && parseInt(match[1], 10)
     }
 
     const initCounter = await getCounter()
@@ -55,15 +55,15 @@ function sharedTests () {
   })
 }
 
-function unlinkIfExists (path, callback) {
-  return fs.unlink(path, (err, result) => {
-    if (err && /ENOENT/.test(err.message)) {err = null} //eslint-disable-line no-param-reassign
+function unlinkIfExists(targetPath, callback) {
+  return fs.unlink(targetPath, (err, result) => {
+    if (err && /ENOENT/.test(err.message)) { err = null } // eslint-disable-line no-param-reassign
     return callback(err, result)
   })
 }
 
 // istanbul ignore next
-async function mergeClientCoverage () {
+async function mergeClientCoverage() {
   if (process.env.BABEL_ENV === 'coverage') {
     const collector = new Collector()
 
@@ -75,7 +75,7 @@ async function mergeClientCoverage () {
   }
 }
 
-async function navigateTo (url) {
+async function navigateTo(url) {
   if (process.env.DUMP_HTTP) {
     const popsicle = require('popsicle')
     const res = await popsicle.get(url)
@@ -88,10 +88,10 @@ async function navigateTo (url) {
   await browser.url(url)
 }
 
-async function logBrowserMessages () {
+async function logBrowserMessages() {
   const logs = (await browser.log('browser')).value
-  if (!logs) {return}
-  logs.forEach(({level, message, timestamp}) => {
+  if (!logs) { return }
+  logs.forEach(({ level, message, timestamp }) => {
     const time = new Date(timestamp).toLocaleTimeString()
     browserLogsDebug(`${time} ${level} ${message}`)
   })
@@ -101,13 +101,14 @@ describe('prod mode', () => {
   let server
   const appFile = path.join(src, 'universal', 'components', 'App.js')
   const serverFile = path.join(src, 'server', 'index.js')
-  let appCode, serverCode
+  let appCode
+  let serverCode
 
   before(async function () {
     this.timeout(600000)
     appCode = await promisify(fs.readFile)(appFile, 'utf8')
     serverCode = await promisify(fs.readFile)(serverFile, 'utf8')
-    server = exec('npm run prod', {cwd: root})
+    server = exec('npm run prod', { cwd: root })
     await childPrinted(server, /App is listening on http/i)
     await browser.reload()
     await navigateTo(process.env.ROOT_URL)
@@ -115,11 +116,11 @@ describe('prod mode', () => {
 
   after(async function () {
     this.timeout(600000)
-    if (process.env.BABEL_ENV === 'coverage') {await mergeClientCoverage()}
-    if (server) {await kill(server, 'SIGINT')}
+    if (process.env.BABEL_ENV === 'coverage') { await mergeClientCoverage() }
+    if (server) { await kill(server, 'SIGINT') }
     // restore code in App.js, which (may) have been changed by hot reloading test
-    if (appCode) {await promisify(fs.writeFile)(appFile, appCode, 'utf8')}
-    if (serverCode) {await promisify(fs.writeFile)(serverFile, serverCode, 'utf8')}
+    if (appCode) { await promisify(fs.writeFile)(appFile, appCode, 'utf8') }
+    if (serverCode) { await promisify(fs.writeFile)(serverFile, serverCode, 'utf8') }
     await logBrowserMessages()
   })
 
@@ -169,8 +170,8 @@ describe('prod mode with DISABLE_FULL_SSR=1', () => {
 
   after(async function () {
     this.timeout(30000)
-    if (process.env.BABEL_ENV === 'coverage') {await mergeClientCoverage()}
-    if (server) {await kill(server, 'SIGINT')}
+    if (process.env.BABEL_ENV === 'coverage') { await mergeClientCoverage() }
+    if (server) { await kill(server, 'SIGINT') }
     await logBrowserMessages()
   })
 })
@@ -181,8 +182,8 @@ describe('docker build', () => {
   before(async function () {
     this.timeout(15 * 60000)
     // run this first, even though it's not necessary, to increase coverage of scripts/build.js
-    await spawnAsync('npm', ['run', 'build'], {cwd: root})
-    await spawnAsync('npm', ['run', 'build:docker'], {cwd: root})
+    await spawnAsync('npm', ['run', 'build'], { cwd: root })
+    await spawnAsync('npm', ['run', 'build:docker'], { cwd: root })
     server = exec('npm run docker', {
       cwd: root,
       env: {
@@ -196,10 +197,10 @@ describe('docker build', () => {
     })
     await childPrinted(server, /App is listening on http/i)
     let host
-    if (process.env.CI) {host = (await execAsync('docker-compose port crater 80', {cwd: root})).stdout.trim()}    else {
+    if (process.env.CI) { host = (await execAsync('docker-compose port crater 80', { cwd: root })).stdout.trim() } else {
       await execAsync('which docker-machine')
-        .then(() => host = `192.168.99.100:${process.env.PORT}`)
-        .catch(() => host = `localhost:${process.env.PORT}`)
+        .then(() => { host = `192.168.99.100:${process.env.PORT}` })
+        .catch(() => { host = `localhost:${process.env.PORT}` })
     }
     await browser.reload()
     await navigateTo(`http://${host}`)
@@ -207,8 +208,8 @@ describe('docker build', () => {
 
   after(async function () {
     this.timeout(20000)
-    if (process.env.BABEL_ENV === 'coverage') {await mergeClientCoverage()}
-    await spawnAsync('docker-compose', ['down'], {cwd: root})
+    if (process.env.BABEL_ENV === 'coverage') { await mergeClientCoverage() }
+    await spawnAsync('docker-compose', ['down'], { cwd: root })
     await logBrowserMessages()
   })
 
@@ -220,13 +221,14 @@ describe('dev mode', () => {
 
   const appFile = path.join(src, 'universal', 'components', 'App.js')
   const serverFile = path.join(src, 'server', 'index.js')
-  let appCode, serverCode
+  let appCode
+  let serverCode
 
   before(async function () {
     this.timeout(15 * 60000)
     appCode = await promisify(fs.readFile)(appFile, 'utf8')
     serverCode = await promisify(fs.readFile)(serverFile, 'utf8')
-    server = exec('npm start', {cwd: root})
+    server = exec('npm start', { cwd: root })
     await Promise.all([
       childPrinted(server, /webpack built [a-z0-9]+ in \d+ms/i),
       childPrinted(server, /App is listening on http/i)
@@ -236,11 +238,11 @@ describe('dev mode', () => {
 
   after(async function () {
     this.timeout(15 * 60000)
-    if (process.env.BABEL_ENV === 'coverage') {await mergeClientCoverage()}
-    if (server) {await kill(server, 'SIGINT')}
+    if (process.env.BABEL_ENV === 'coverage') { await mergeClientCoverage() }
+    if (server) { await kill(server, 'SIGINT') }
     // restore code in App.js, which (may) have been changed by hot reloading test
-    if (appCode) {await promisify(fs.writeFile)(appFile, appCode, 'utf8')}
-    if (serverCode) {await promisify(fs.writeFile)(serverFile, serverCode, 'utf8')}
+    if (appCode) { await promisify(fs.writeFile)(appFile, appCode, 'utf8') }
+    if (serverCode) { await promisify(fs.writeFile)(serverFile, serverCode, 'utf8') }
     await logBrowserMessages()
   })
 
@@ -276,45 +278,45 @@ describe('build scripts', () => {
       this.timeout(480000)
 
       await promisify(rimraf)(path.join(build, 'meteor'))
-      expect(/building meteor packages/i.test((await execAsync('npm run build:meteor', {cwd: root})).stdout)).to.be.true
-      expect(/build\/meteor is up to date/i.test((await execAsync('npm run build:meteor', {cwd: root})).stdout)).to.be.true
+      expect(/building meteor packages/i.test((await execAsync('npm run build:meteor', { cwd: root })).stdout)).to.be.true
+      expect(/build\/meteor is up to date/i.test((await execAsync('npm run build:meteor', { cwd: root })).stdout)).to.be.true
 
       await delay(1000)
       await promisify(fs.utimes)(path.resolve(root, 'meteor', '.meteor', 'packages'), NaN, NaN)
-      expect(/building meteor packages/i.test((await execAsync('npm run build:meteor', {cwd: root})).stdout)).to.be.true
-      expect(/build\/meteor is up to date/i.test((await execAsync('npm run build:meteor', {cwd: root})).stdout)).to.be.true
+      expect(/building meteor packages/i.test((await execAsync('npm run build:meteor', { cwd: root })).stdout)).to.be.true
+      expect(/build\/meteor is up to date/i.test((await execAsync('npm run build:meteor', { cwd: root })).stdout)).to.be.true
     })
   })
   describe('build:client', () => {
     it('only rebuilds when necessary', async function () {
       this.timeout(480000)
 
-      await spawnAsync('npm', ['run', 'build:meteor'], {stdio: 'inherit', cwd: root})
+      await spawnAsync('npm', ['run', 'build:meteor'], { stdio: 'inherit', cwd: root })
 
       await promisify(unlinkIfExists)(path.join(build, 'assets.json'))
-      expect(/building client bundle/.test((await execAsync('npm run build:client', {cwd: root})).stdout)).to.be.true
-      expect(/client assets are up to date/.test((await execAsync('npm run build:client', {cwd: root})).stdout)).to.be.true
+      expect(/building client bundle/.test((await execAsync('npm run build:client', { cwd: root })).stdout)).to.be.true
+      expect(/client assets are up to date/.test((await execAsync('npm run build:client', { cwd: root })).stdout)).to.be.true
 
       await delay(1000)
       await promisify(fs.utimes)(path.resolve(webpack, 'webpack.config.prod.js'), NaN, NaN)
-      expect(/building client bundle/.test((await execAsync('npm run build:client', {cwd: root})).stdout)).to.be.true
-      expect(/client assets are up to date/.test((await execAsync('npm run build:client', {cwd: root})).stdout)).to.be.true
+      expect(/building client bundle/.test((await execAsync('npm run build:client', { cwd: root })).stdout)).to.be.true
+      expect(/client assets are up to date/.test((await execAsync('npm run build:client', { cwd: root })).stdout)).to.be.true
     })
   })
   describe('build:server', () => {
     it('only rebuilds when necessary', async function () {
       this.timeout(480000)
 
-      await spawnAsync('npm', ['run', 'build:meteor'], {stdio: 'inherit', cwd: root})
+      await spawnAsync('npm', ['run', 'build:meteor'], { stdio: 'inherit', cwd: root })
 
       await promisify(unlinkIfExists)(path.join(build, 'prerender.js'))
-      expect(/building server bundle/.test((await execAsync('npm run build:server', {cwd: root})).stdout)).to.be.true
-      expect(/server assets are up to date/.test((await execAsync('npm run build:server', {cwd: root})).stdout)).to.be.true
+      expect(/building server bundle/.test((await execAsync('npm run build:server', { cwd: root })).stdout)).to.be.true
+      expect(/server assets are up to date/.test((await execAsync('npm run build:server', { cwd: root })).stdout)).to.be.true
 
       await delay(1000)
       await promisify(fs.utimes)(path.resolve(webpack, 'webpack.config.server.js'), NaN, NaN)
-      expect(/building server bundle/.test((await execAsync('npm run build:server', {cwd: root})).stdout)).to.be.true
-      expect(/server assets are up to date/.test((await execAsync('npm run build:server', {cwd: root})).stdout)).to.be.true
+      expect(/building server bundle/.test((await execAsync('npm run build:server', { cwd: root })).stdout)).to.be.true
+      expect(/server assets are up to date/.test((await execAsync('npm run build:server', { cwd: root })).stdout)).to.be.true
     })
   })
 })

@@ -1,8 +1,8 @@
 // @flow
 
-import {combineReducers} from 'redux-immutablejs'
-import {routerReducer} from 'react-router-redux'
-import type {Reducer} from '../flowtypes/redux'
+import { combineReducers } from 'redux-immutablejs'
+import { routerReducer } from 'react-router-redux'
+import type { Reducer } from '../flowtypes/redux'
 
 const currentReducers: {[key: string]: Reducer} = {
   router: routerReducer

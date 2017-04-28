@@ -9,9 +9,9 @@ import path from 'path'
 const root = path.resolve(__dirname, '..')
 
 asyncScript(async (): Promise<any> => {
-  const commitHash = (await execAsync('git rev-parse HEAD', {silent: true})).stdout.trim()
-  const {TARGET} = process.env
-  const NAME = `crater${TARGET ? '-' + TARGET : ''}`
+  const commitHash = (await execAsync('git rev-parse HEAD', { silent: true })).stdout.trim()
+  const { TARGET } = process.env
+  const NAME = `crater${TARGET ? `-${TARGET}` : ''}`
   await spawnAsync('docker-compose', ['up'], {
     env: {
       ...process.env,

@@ -1,21 +1,22 @@
-import React from 'react'
-import {createStore} from 'redux'
-import makeReducer from '../universal/redux/makeReducer'
-import {match} from 'react-router'
-import Html from './Html'
-import {push} from 'react-router-redux'
-import {renderToStaticMarkup} from 'react-dom-stream/server'
-import fs from 'fs'
-import path from 'path'
-import {join} from 'path'
-import promisify from 'es6-promisify'
-import {Map as iMap} from 'immutable'
-import {Meteor} from 'meteor/meteor'
-import url from 'url'
-import type {IncomingMessage, ServerResponse} from 'http'
-import type {Store} from '../universal/flowtypes/redux'
+import type { IncomingMessage, ServerResponse } from 'http'
+import type { Store } from '../universal/flowtypes/redux'
 
-const __meteor_runtime_config__ = {
+import { Meteor } from 'meteor/meteor'
+import React from 'react'
+import { createStore } from 'redux'
+import makeReducer from '../universal/redux/makeReducer'
+import { match } from 'react-router'
+import { push } from 'react-router-redux'
+import { renderToStaticMarkup } from 'react-dom-stream/server'
+import { Map as iMap } from 'immutable'
+import promisify from 'es6-promisify'
+import fs from 'fs'
+import path, { join } from 'path'
+import url from 'url'
+import Html from './Html'
+
+
+const __meteor_runtime_config__ = { // eslint-disable-line camelcase
   PUBLIC_SETTINGS     : Meteor.settings.public || {},
   ROOT_URL            : process.env.ROOT_URL,
   // Not everything is in place to support basename right now (e.g. react-router history config, webpack config)
@@ -27,8 +28,8 @@ const __meteor_runtime_config__ = {
   meteorRelease: Meteor.release
 }
 
-function renderApp (res: ServerResponse, store: Store, assets?: Object, renderProps?: Object) {
-  const location = renderProps && renderProps.location && renderProps.location.pathname || '/'
+function renderApp(res: ServerResponse, store: Store, assets?: Object, renderProps?: Object) {
+  const location = (renderProps && renderProps.location && renderProps.location.pathname) || '/'
   // Needed so some components can render based on location
   store.dispatch(push(location))
   const htmlStream = renderToStaticMarkup(
@@ -36,16 +37,16 @@ function renderApp (res: ServerResponse, store: Store, assets?: Object, renderPr
       title="Crater"
       store={store}
       assets={assets}
-      __meteor_runtime_config__={__meteor_runtime_config__}
+      __meteor_runtime_config__={__meteor_runtime_config__} // eslint-disable-line camelcase
       renderProps={renderProps}
     />
   )
   res.write('<!DOCTYPE html>')
-  htmlStream.pipe(res, {end: false})
+  htmlStream.pipe(res, { end: false })
   htmlStream.on('end', (): void => res.end())
 }
 
-async function createSSR (req: IncomingMessage, res: ServerResponse): Promise<void> {
+async function createSSR(req: IncomingMessage, res: ServerResponse): Promise<void> {
   try {
     const store = createStore(makeReducer(), iMap())
     if (process.env.NODE_ENV === 'production') {
@@ -58,7 +59,7 @@ async function createSSR (req: IncomingMessage, res: ServerResponse): Promise<vo
       }
       const makeRoutes = require('../universal/routes').default
       const routes = makeRoutes(store)
-      match({routes, location: req.url},
+      match({ routes, location: req.url },
         (error: ?Error, redirectLocation: {pathname: string, search: string}, renderProps: ?Object) => {
           if (error) {
             res.status(500).send(error.message)
@@ -72,7 +73,7 @@ async function createSSR (req: IncomingMessage, res: ServerResponse): Promise<vo
         })
     } else {
       // just send a cheap html doc + stringified store
-      renderApp(res,  store)
+      renderApp(res, store)
     }
   } catch (error) {
     console.error(error.stack) // eslint-disable-line no-console

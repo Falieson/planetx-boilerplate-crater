@@ -14,9 +14,9 @@ import buildDir from '../buildDir'
 const root = path.resolve(__dirname, '..')
 const prerender = path.join(buildDir, 'prerender.js')
 
-const opts = {cwd: root, stdio: 'inherit'}
+const opts = { cwd: root, stdio: 'inherit' }
 
-async function buildServer (): Promise<void> {
+async function buildServer(): Promise<void> {
   await promisify(mkdirp)(buildDir)
   await spawnAsync('babel', [path.join(root, 'src', 'index.js'), '-o', path.join(buildDir, 'index.js')], opts)
   if (await isNewerThan(path.join(root, 'webpack', 'webpack.config.server.js'), prerender) ||
@@ -24,14 +24,14 @@ async function buildServer (): Promise<void> {
     console.log('building server bundle...')
     const compiler = webpack(webpackConfig)
     const stats = await promisify(compiler.run, compiler)()
-    process.stdout.write(stats.toString({
+    process.stdout.write(`${stats.toString({
       colors      : true,
       modules     : false,
       chunkModules: false,
       chunks      : true,
       errorDetails: true
-    }) + "\n")
-    if (stats.toJson().errors.length) {throw new Error("webpack build had errors")}
+    })}\n`)
+    if (stats.toJson().errors.length) { throw new Error('webpack build had errors') }
   } else {
     console.log('server assets are up to date')
   }

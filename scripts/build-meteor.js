@@ -14,7 +14,7 @@ import buildDir from '../buildDir'
 const root = path.resolve(__dirname, '..')
 const meteor = path.join(root, 'meteor')
 
-async function buildMeteor (): Promise<void> {
+async function buildMeteor(): Promise<void> {
   await promisify(mkdirp)(buildDir)
   if (await isNewerThan([
     ...await promisify(glob)(path.join(meteor, '**')),
