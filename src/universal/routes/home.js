@@ -1,7 +1,7 @@
 // @flow
+import type { Store } from 'universal/flowtypes/redux'
 
-import App from '../components/App'
-import type { Store } from '../flowtypes/redux'
+import App from 'universal/components/App'
 
 // eslint-disable-next-line no-unused-vars
 export default (store: Store): Object => ({
