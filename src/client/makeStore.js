@@ -1,11 +1,12 @@
+/* eslint-env node*/
 /* @flow */
+import type { Store } from '../universal/flowtypes/redux'
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Map as iMap } from 'immutable'
 import { routerMiddleware } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 import makeReducer from '../universal/redux/makeReducer'
-import type {Store} from '../universal/flowtypes/redux'
 
 export default (initialState: iMap<string, any>): Store => {
   let store

@@ -1,3 +1,4 @@
+/* eslint-env node*/
 import 'meteor-imports'
 import { Meteor } from 'meteor/meteor'
 import { render } from 'react-dom'
@@ -7,7 +8,7 @@ import { Map as iMap } from 'immutable'
 import makeStore from './makeStore'
 import Root from './Root'
 
-if (process.env.NODE_ENV !== 'production') {require('es6-promise').polyfill()}
+if (process.env.NODE_ENV !== 'production') { require('es6-promise').polyfill() }
 
 Meteor.startup(() => {
   const { router } = window.__INITIAL_STATE__
@@ -25,14 +26,14 @@ Meteor.startup(() => {
     document.getElementById('root')
   )
 
-  let reloads = 0
+  const reloads = 0
 
   // Hot Module Replacement API
   if (module.hot) {
     module.hot.accept('./Root', () => {
-      const Root = require('./Root').default
+      const Root = require('./Root').default // eslint-disable-line no-shadow
       render(
-        <AppContainer key={++reloads}>
+        <AppContainer key={1 + reloads}>
           <Root store={store} />
         </AppContainer>,
         document.getElementById('root')

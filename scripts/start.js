@@ -13,7 +13,7 @@ process.env.USE_DOTENV = '1'
 const root = path.resolve(__dirname, '..')
 const src = path.join(root, 'src')
 
-async function start (options?: {commandOptions?: Array<any>} = {}): Promise<any> {
+async function start(options?: {commandOptions?: Array<any>} = {}): Promise<any> {
   if (process.argv.indexOf('--fast') < 0) {
     await buildMeteor()
     await installMeteorDeps()

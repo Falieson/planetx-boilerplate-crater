@@ -44,7 +44,7 @@ WebApp.onListening(() => {
   console.log(`App is listening on http://0.0.0.0:${process.env.PORT || '80'}`) // eslint-disable-line no-console
 })
 
-function shutdown () {
+function shutdown() {
   shutdownDebug('got signal, shutting down')
   WebApp.httpServer.close()
   process.exit(0)

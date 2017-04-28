@@ -41,8 +41,8 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
-      '__CLIENT__'          : true,
-      '__PRODUCTION__'      : false,
+      __CLIENT__            : true,
+      __PRODUCTION__        : false,
       'Meteor.isClient'     : true,
       'Meteor.isCordova'    : false,
       'Meteor.isServer'     : false,
@@ -53,15 +53,15 @@ const config = {
       loaders: [{
         path   : 'babel-loader',
         options: {
-          "presets": [["es2015", {loose: true, modules: false}], "stage-1", "react", "flow"],
-          "plugins": [
-            "transform-runtime",
-            "react-hot-loader/babel"
+          presets: [['es2015', { loose: true, modules: false }], 'stage-1', 'react', 'flow'],
+          plugins: [
+            'transform-runtime',
+            'react-hot-loader/babel'
           ],
-          "env": {
-            "coverage": {
-              "plugins": [
-                "istanbul"
+          env: {
+            coverage: {
+              plugins: [
+                'istanbul'
               ]
             }
           }
@@ -85,16 +85,16 @@ const config = {
           path.join(root, 'build', 'meteor', 'bundle', 'programs')
         ]
       },
-      {test: /\.txt$/, loader: 'raw-loader'},
+      { test: /\.txt$/, loader: 'raw-loader' },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-        use : [{loader: 'url-loader', options: {limit: 10000}}]
+        use : [{ loader: 'url-loader', options: { limit: 10000 } }]
       },
-      {test: /\.(eot|ttf|wav|mp3)$/, loader: 'file-loader'},
+      { test: /\.(eot|ttf|wav|mp3)$/, loader: 'file-loader' },
       {
         test: /\.css$/,
         use : [
-          {loader: 'style-loader'},
+          { loader: 'style-loader' },
           {
             loader : 'css-loader',
             options: {
@@ -103,14 +103,14 @@ const config = {
               localIdentName: '[name]_[local]_[hash:base64:5]'
             }
           },
-          {loader: 'postcss-loader'}
+          { loader: 'postcss-loader' }
         ],
         exclude: globalCSS,
         include: clientInclude
       },
       {
         test   : /\.css$/,
-        use    : [{loader: 'style-loader'}, {loader: 'css-loader'}],
+        use    : [{ loader: 'style-loader' }, { loader: 'css-loader' }],
         include: globalCSS
       },
       {
@@ -133,7 +133,7 @@ const config = {
 }
 
 /* istanbul ignore next */
-if (!process.env.CI) {config.plugins.push(new ProgressBarPlugin())}
+if (!process.env.CI) { config.plugins.push(new ProgressBarPlugin()) }
 
 export default config
 

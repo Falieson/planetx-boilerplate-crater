@@ -46,10 +46,10 @@ const config = {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractTextPlugin('/static/[name].css'),
-    new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}),
+    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
     new webpack.DefinePlugin({
-      '__CLIENT__'          : false,
-      '__PRODUCTION__'      : true,
+      __CLIENT__            : false,
+      __PRODUCTION__        : true,
       'Meteor.isClient'     : false,
       'Meteor.isCordova'    : false,
       'Meteor.isServer'     : true,
@@ -63,15 +63,15 @@ const config = {
       loaders: [{
         path   : 'babel-loader',
         options: {
-          "presets": [["es2015", {loose: true, modules: false}], "stage-1", "react", "flow"],
-          "plugins": [
-            "transform-runtime",
-            "meteor-imports"
+          presets: [['es2015', { loose: true, modules: false }], 'stage-1', 'react', 'flow'],
+          plugins: [
+            'transform-runtime',
+            'meteor-imports'
           ],
-          "env": {
-            "coverage": {
-              "plugins": [
-                "istanbul"
+          env: {
+            coverage: {
+              plugins: [
+                'istanbul'
               ]
             }
           }
@@ -82,10 +82,10 @@ const config = {
   ],
   module: {
     loaders: [
-      {test: /\.json$/, loader: 'json-loader'},
-      {test: /\.txt$/, loader: 'raw-loader'},
-      {test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/, use: [{loader: 'url-loader', options: {limit: 10000}}]},
-      {test: /\.(eot|ttf|wav|mp3)$/, loader: 'file-loader'},
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.txt$/, loader: 'raw-loader' },
+      { test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/, use: [{ loader: 'url-loader', options: { limit: 10000 } }] },
+      { test: /\.(eot|ttf|wav|mp3)$/, loader: 'file-loader' },
       {
         test: /\.css$/,
         use : ExtractTextPlugin.extract({
@@ -99,7 +99,7 @@ const config = {
                 localIdentName: '[name]_[local]_[hash:base64:5]'
               }
             },
-            {loader: 'postcss-loader'}
+            { loader: 'postcss-loader' }
           ]
         }),
         include: srcDir,
@@ -108,8 +108,8 @@ const config = {
       {
         test: /\.css$/,
         use : ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use     : "css-loader"
+          fallback: 'style-loader',
+          use     : 'css-loader'
         }),
         include: globalCSS
       },
@@ -123,7 +123,7 @@ const config = {
 }
 
 /* istanbul ignore next */
-if (!process.env.CI) {config.plugins.push(new ProgressBarPlugin())}
+if (!process.env.CI) { config.plugins.push(new ProgressBarPlugin()) }
 if (process.argv.indexOf('--no-uglify') < 0) {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     compressor: { warnings: false }

@@ -1,10 +1,14 @@
 /* @flow */
+/* eslint react/prefer-stateless-function: 0 */
 /* eslint react/no-danger:0 */
 /* eslint react/no-unused-prop-types:0 */
-import React, {Component, PropTypes} from 'react'
-import {Provider} from 'react-redux'
-import {RouterContext} from 'react-router'
-import {renderToString} from 'react-dom-stream/server'
+/* eslint react/forbid-prop-types: 0 */
+/* eslint react/require-default-props: 0 */
+
+import React, { Component, PropTypes } from 'react'
+import { Provider } from 'react-redux'
+import { RouterContext } from 'react-router'
+import { renderToString } from 'react-dom-stream/server'
 
 // Injects the server rendered state and app into a basic html template
 export default class Html extends Component {
@@ -18,10 +22,10 @@ export default class Html extends Component {
     renderProps              : PropTypes.object
   }
 
-  render (): React.Element<any> {
+  render(): React.Element<any> {
     const PROD = process.env.NODE_ENV === 'production'
-    const {title, __meteor_runtime_config__, store, assets, renderProps} = this.props
-    const {manifest, app, vendor, meteor} = assets || {}
+    const { title, __meteor_runtime_config__, store, assets, renderProps } = this.props
+    const { manifest, app, vendor, meteor } = assets || {}
     const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`
     const root = PROD && !process.env.DISABLE_FULL_SSR && renderToString(
       <Provider store={store}>
@@ -30,7 +34,7 @@ export default class Html extends Component {
     )
 
     return (
-      <html>
+      <html lang="en">
         <head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -40,12 +44,14 @@ export default class Html extends Component {
           <title>{title}</title>
         </head>
         <body>
-          <script dangerouslySetInnerHTML={{
-            __html: `window.__meteor_runtime_config__ = ${JSON.stringify(__meteor_runtime_config__)}`
-          }} />
-          <script dangerouslySetInnerHTML={{__html: initialState}} />
-          {PROD ? <div id="root" dangerouslySetInnerHTML={{__html: root}}></div> : <div id="root"></div>}
-          {PROD && <script dangerouslySetInnerHTML={{__html: manifest.text}} />}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__meteor_runtime_config__ = ${JSON.stringify(__meteor_runtime_config__)}`
+            }}
+          />
+          <script dangerouslySetInnerHTML={{ __html: initialState }} />
+          {PROD ? <div id="root" dangerouslySetInnerHTML={{ __html: root }} /> : <div id="root" />}
+          {PROD && <script dangerouslySetInnerHTML={{ __html: manifest.text }} />}
           {PROD && <script src={vendor.js} />}
           {PROD && <script src={meteor.js} />}
           <script src={PROD ? app.js : '/static/app.js'} />

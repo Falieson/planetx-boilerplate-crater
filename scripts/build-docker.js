@@ -19,9 +19,9 @@ const opts = {
 
 asyncScript(async (): Promise<void> => {
   await build()
-  const commitHash = (await execAsync('git rev-parse HEAD', {silent: true})).stdout.trim()
-  const {TARGET} = process.env
-  const tag = `jedwards1211/crater${TARGET ? '-' + TARGET : ''}:${commitHash}`
+  const commitHash = (await execAsync('git rev-parse HEAD', { silent: true })).stdout.trim()
+  const { TARGET } = process.env
+  const tag = `jedwards1211/crater${TARGET ? `-${TARGET}` : ''}:${commitHash}`
   await spawnAsync('docker', [
     'build',
     '--build-arg', `BUILD_DIR=${path.relative(root, buildDir)}`,

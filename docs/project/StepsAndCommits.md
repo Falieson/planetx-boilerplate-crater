@@ -21,8 +21,8 @@
     - [Differences between crater#master and crater#webpack2](#differences-between-cratermaster-and-craterwebpack2)
 - [Commit Thoughts ($sort: desc)](#commit-thoughts-sort-desc)
 - [Commit Status ($sort: asc)](#commit-status-sort-asc)
-  - [Done](#done)
   - [Next](#next)
+  - [Done](#done)
   - [Deferred](#deferred)
 
 <!-- /TOC -->
@@ -41,6 +41,7 @@
 - [x] es2017 decorators
 
 ### FEATURE: ESLINT
+- [x] update crater skeleton to conform to `eslint-config-planetx`
 - [x] refactored everything out into [eslint-config-planetx](/falieson/eslint-config-planetx)
 - [x] install eslint lodash
 - [x] install eslint compat & jsx-a11y
@@ -176,13 +177,16 @@ Deleted branch webpack2_for-pr_142-144-145 (was f051aaa).
 # Commits
 ## Commit Thoughts ($sort: desc)
 ## Commit Status ($sort: asc)
-### Done
-1. 267ba066 PX BABEL - INIT
-1. 09617eb9 PX ESLINT - INIT
-1. 1172001a PX INIT fixed project steps log
-1. e0b9ba7c PX INIT add license
-1. 328c6404 PX INIT package script shortcuts
-1. 56aea139 PX INIT doc, project plan, PlanetX & Crater in
-
 ### Next
+1. PX ESLINT - update crater for lint rules
+
+### Done
+1. 56aea139 PX INIT doc, project plan, PlanetX & Crater in
+1. 328c6404 PX INIT package script shortcuts
+1. e0b9ba7c PX INIT add license
+1. 1172001a PX INIT fixed project steps log
+1. 09617eb9 PX ESLINT - INIT
+1. 267ba066 PX BABEL - INIT
+1. 82c58e7d PX ESLINT - install eslint-config-planetx
+
 ### Deferred

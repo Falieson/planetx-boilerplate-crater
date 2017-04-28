@@ -1,4 +1,4 @@
-import {Map as iMap} from 'immutable'
+import { Map as iMap } from 'immutable'
 import type {
   Store as _Store,
   Reducer as _Reducer,
