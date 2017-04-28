@@ -1,10 +1,15 @@
 <!-- TOC depthFrom:2 depthTo:4 orderedList:false updateOnSave:true withLinks:true -->
 
+- [Commit Thoughts ($sort: desc)](#commit-thoughts-sort-desc)
+- [Commit Status ($sort: asc)](#commit-status-sort-asc)
+  - [Next](#next)
+  - [Done](#done)
+  - [Deferred](#deferred)
 - [TODO ($sort: asc)](#todo-sort-asc)
-  - [CONFIG: WEBPACK](#config-webpack)
   - [OPTIMIZATIONS (optional)](#optimizations-optional)
   - [IMPROVEMENTS](#improvements)
 - [COMPLETE ($sort: desc)](#complete-sort-desc)
+  - [FEATURE: WEBPACK](#feature-webpack)
   - [FEATURE: BABEL](#feature-babel)
   - [FEATURE: ESLINT](#feature-eslint)
   - [SETUP](#setup)
@@ -19,23 +24,43 @@
     - [Running tests](#running-tests)
     - [Adding some of my MRs to #master to #webpack2](#adding-some-of-my-mrs-to-master-to-webpack2)
     - [Differences between crater#master and crater#webpack2](#differences-between-cratermaster-and-craterwebpack2)
-- [Commit Thoughts ($sort: desc)](#commit-thoughts-sort-desc)
-- [Commit Status ($sort: asc)](#commit-status-sort-asc)
-  - [Next](#next)
-  - [Done](#done)
-  - [Deferred](#deferred)
 
 <!-- /TOC -->
+
+# Commits
+## Commit Thoughts ($sort: desc)
+## Commit Status ($sort: asc)
+### Next
+1. PX WEBPACK - module aliases and DRY webpack
+
+### Done
+1. e4417c89 PX ESLINT - update crater for lint rules
+1. 56aea139 PX INIT doc, project plan, PlanetX & Crater in
+1. 328c6404 PX INIT package script shortcuts
+1. e0b9ba7c PX INIT add license
+1. 1172001a PX INIT fixed project steps log
+1. 09617eb9 PX ESLINT - INIT
+1. 267ba066 PX BABEL - INIT
+1. 82c58e7d PX ESLINT - install eslint-config-planetx
+
+### Deferred
+
+
 # Steps
 ## TODO ($sort: asc)
-### CONFIG: WEBPACK
-- [ ] module aliases
+- [ ] modularize counter
+- [ ] redux counter
+- [ ] mongodb counter
 
 ### OPTIMIZATIONS (optional)
 ### IMPROVEMENTS
 
 
 ## COMPLETE ($sort: desc)
+### FEATURE: WEBPACK
+- [x] module aliases
+- [x] DRY webpack
+
 ### FEATURE: BABEL
 - [x] es2017
 - [x] es2017 decorators
@@ -173,20 +198,3 @@ Deleted branch webpack2_for-pr_142-144-145 (was f051aaa).
 
 # Addon Features (optional)
 
-
-# Commits
-## Commit Thoughts ($sort: desc)
-## Commit Status ($sort: asc)
-### Next
-1. PX ESLINT - update crater for lint rules
-
-### Done
-1. 56aea139 PX INIT doc, project plan, PlanetX & Crater in
-1. 328c6404 PX INIT package script shortcuts
-1. e0b9ba7c PX INIT add license
-1. 1172001a PX INIT fixed project steps log
-1. 09617eb9 PX ESLINT - INIT
-1. 267ba066 PX BABEL - INIT
-1. 82c58e7d PX ESLINT - install eslint-config-planetx
-
-### Deferred

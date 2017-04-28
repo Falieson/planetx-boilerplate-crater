@@ -6,11 +6,9 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HappyPack from 'happypack'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import nodeExternals from 'webpack-node-externals'
-import buildDir from '../buildDir'
 
-const root = path.resolve(__dirname, '..')
-const srcDir = path.resolve(root, 'src')
-const globalCSS = path.join(srcDir, 'styles', 'global')
+import { root, buildDir, srcDir, globalCSS } from './constants'
+import { resolve } from './settings'
 
 const config = {
   context: root,
@@ -23,6 +21,7 @@ const config = {
     __dirname : false,
     __filename: false
   },
+  resolve,
   output: {
     path         : buildDir,
     chunkFilename: '[name]_[chunkhash].js',

@@ -16,3 +16,9 @@ module.name_mapper='.*\.css$' -> 'empty/object'
 module.name_mapper='^meteor\/.*' -> 'empty/object'
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
+
+module.name_mapper='^client' ->'<PROJECT_ROOT>/src/client'
+module.name_mapper='^modules' ->'<PROJECT_ROOT>/src/modules'
+module.name_mapper='^routes' ->'<PROJECT_ROOT>/src/universal/routes'
+module.name_mapper='^server' ->'<PROJECT_ROOT>/src/server'
+module.name_mapper='^universal' ->'<PROJECT_ROOT>/src/universal'

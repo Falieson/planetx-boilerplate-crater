@@ -8,10 +8,21 @@
   ],
   "plugins": [
     "transform-decorators-legacy",
+    "transform-object-rest-spread",
     "transform-runtime",
     "meteor-imports"
   ],
   "env": {
+    "dev": {
+      "plugins": [
+        [ "babel-plugin-webpack-alias", { "config": "./webpack/webpack.config.dev.js" } ]
+      ]
+    },
+    "prod": {
+      "plugins": [
+        [ "babel-plugin-webpack-alias", { "config": "./webpack/webpack.config.prod.js" } ]
+      ]
+    },
     "coverage": {
       "plugins": [
         ["istanbul", {

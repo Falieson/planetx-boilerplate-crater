@@ -15,7 +15,8 @@
     - [x] es2017 support
 
 - Webpack
-    - [ ] module aliases
+    - [x] module aliases
+    - [x] DRY webpack
 
 - Flowtype
     - [ ] react

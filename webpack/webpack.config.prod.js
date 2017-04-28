@@ -7,18 +7,13 @@ import HappyPack from 'happypack'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import MeteorImportsPlugin from 'meteor-imports-webpack-plugin'
 import cssModulesValues from 'postcss-modules-values'
-import buildDir from '../buildDir'
 
-const root = path.resolve(__dirname, '..')
-const srcDir = path.resolve(root, 'src')
-const globalCSS = path.join(srcDir, 'styles', 'global')
-const clientInclude = [srcDir]
-
-const meteorConfig = {
-  meteorProgramsFolder     : path.resolve(buildDir, 'meteor', 'bundle', 'programs'),
-  injectMeteorRuntimeConfig: false,
-  exclude                  : []
-}
+import {
+  root, buildDir, globalCSS, clientInclude
+} from './constants'
+import {
+  meteorConfig, resolve
+} from './settings'
 
 const vendor = [
   'react',
@@ -33,6 +28,7 @@ const config = {
     vendor,
     meteor: ['meteor-imports']
   },
+  resolve,
   output: {
     filename     : '[name]_[chunkhash].js',
     chunkFilename: '[name]_[chunkhash].js',
