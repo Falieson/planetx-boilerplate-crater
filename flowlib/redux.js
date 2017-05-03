@@ -1,11 +1,9 @@
 declare module 'redux' {
 
   /*
-
-   S = State
-   A = Action
-
-   */
+    S = State
+    A = Action
+  */
 
   declare type Dispatch<A: { type: $Subtype<string> }> = (action: A) => A;
 

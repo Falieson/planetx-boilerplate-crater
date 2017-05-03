@@ -1,25 +1,33 @@
+planetx-boilerplate-crater
+======
+
+PlanetX flavor of [Crater](http://github.com/jcoreio/crater)
+------
+
 <!-- TOC depthFrom:1 depthTo:2 orderedList:false updateOnSave:true withLinks:true -->
 
 - [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Development](#development)
-    - [Startup](#startup)
-    - [Dev Server](#dev-server)
-    - [Development Process](#development-process)
-    - [Dev Debug mode](#dev-debug-mode)
-    - [Prod mode](#prod-mode)
-    - [Disabling full SSR in prod mode](#disabling-full-ssr-in-prod-mode)
-    - [Prod Debug mode](#prod-debug-mode)
+  - [Startup](#startup)
+  - [Dev Server](#dev-server)
+  - [Development Process](#development-process)
+  - [Dev Debug mode](#dev-debug-mode)
+  - [Prod mode](#prod-mode)
+  - [Disabling full SSR in prod mode](#disabling-full-ssr-in-prod-mode)
+  - [Prod Debug mode](#prod-debug-mode)
 - [Testing](#testing)
-    - [Eslint/Flow](#eslintflow)
-    - [Unit Testing](#unit-testing)
-    - [Integration Testing](#integration-testing)
+  - [Eslint/Flow](#eslintflow)
+  - [Unit Testing](#unit-testing)
+  - [Integration Testing](#integration-testing)
 - [Build](#build)
-    - [Docker](#docker)
-    - [Multiple targets](#multiple-targets)
+  - [Docker](#docker)
+  - [Multiple targets](#multiple-targets)
 - [FAQ / Support](#faq--support)
 
 <!-- /TOC -->
+
+---
 
 # Documentation
 ```
@@ -28,11 +36,12 @@
   ./CRATER_README.md                      - Original `crater/README.md` - Boilerplate features, differences from MeteorJS
   ./CRATER_FAQ.md                         - My notes for how to use Crater
   ./CHANGELOG.md                          - Changes by version number
+  
 /docs/project/
   ./ProjectDescription.md                 - What it is the package is about
   ./FeaturePlan.md                        - How I think each piece should work
   ./StepsAndCommits.md                    - What I'm thinking along the way
-  ./Bugs.md                               - Problems I'm deferring to fix
+  ./Maintanence.md                        - Notes about maintaining the project
 
 /README.md (this)                         - Developer Notes
 ```

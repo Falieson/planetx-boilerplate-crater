@@ -1,5 +1,5 @@
 import path from 'path'
-import { buildDir } from '../constants'
+import { buildDir } from '../common'
 
 const meteorConfig = {
   meteorProgramsFolder     : path.resolve(buildDir, 'meteor', 'bundle', 'programs'),

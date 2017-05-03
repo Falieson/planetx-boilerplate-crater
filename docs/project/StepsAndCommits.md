@@ -1,3 +1,6 @@
+Steps and Commits
+======
+
 <!-- TOC depthFrom:2 depthTo:4 orderedList:false updateOnSave:true withLinks:true -->
 
 - [Commit Thoughts ($sort: desc)](#commit-thoughts-sort-desc)
@@ -10,6 +13,7 @@
   - [IMPROVEMENTS](#improvements)
 - [COMPLETE ($sort: desc)](#complete-sort-desc)
   - [FEATURE: WEBPACK](#feature-webpack)
+  - [FEATURE: WEBPACK](#feature-webpack-1)
   - [FEATURE: BABEL](#feature-babel)
   - [FEATURE: ESLINT](#feature-eslint)
   - [SETUP](#setup)
@@ -31,17 +35,21 @@
 ## Commit Thoughts ($sort: desc)
 ## Commit Status ($sort: asc)
 ### Next
-1. PX WEBPACK - module aliases and DRY webpack
+1. PX FLOW - INIT
+1. PX DEMO - INIT Counters Module
+1. PX DEMO - Counters Redux
+1. PX DEMO - Counters CRUD
 
 ### Done
-1. e4417c89 PX ESLINT - update crater for lint rules
-1. 56aea139 PX INIT doc, project plan, PlanetX & Crater in
-1. 328c6404 PX INIT package script shortcuts
-1. e0b9ba7c PX INIT add license
-1. 1172001a PX INIT fixed project steps log
-1. 09617eb9 PX ESLINT - INIT
-1. 267ba066 PX BABEL - INIT
-1. 82c58e7d PX ESLINT - install eslint-config-planetx
+1. PX INIT doc, project plan, PlanetX & Crater in
+1. PX INIT package script shortcuts
+1. PX INIT add license
+1. PX INIT fixed project steps log
+1. PX ESLINT - INIT
+1. PX BABEL - INIT
+1. PX ESLINT - install eslint-config-planetx
+1. PX ESLINT - update crater for lint rules
+1. PX WEBPACK - module aliases and DRY webpack
 
 ### Deferred
 
@@ -57,6 +65,10 @@
 
 
 ## COMPLETE ($sort: desc)
+### FEATURE: WEBPACK
+- [x] react
+- [x] javascript
+
 ### FEATURE: WEBPACK
 - [x] module aliases
 - [x] DRY webpack

@@ -10,7 +10,7 @@ import cssModulesValues from 'postcss-modules-values'
 
 import {
   root, buildDir, globalCSS, clientInclude
-} from './constants'
+} from './common'
 import {
   meteorConfig, resolve
 } from './settings'

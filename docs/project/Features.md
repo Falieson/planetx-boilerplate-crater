@@ -4,8 +4,8 @@
 - Settings
     - [x] .nvmrc 
     - [x] .gitignore
-    - [ ] settings.production.json :: meteor server settings
-    - [ ] settings.test.json :: meteor server settings
+    <!--- [ ] settings.production.json :: meteor server settings-->
+    <!--- [ ] settings.test.json :: meteor server settings-->
     
 - ESLint
     - [x] modularized into package `eslint-config-planetx`
@@ -19,5 +19,5 @@
     - [x] DRY webpack
 
 - Flowtype
-    - [ ] react
-    - [ ] javascript
+    - [x] react
+    - [x] javascript

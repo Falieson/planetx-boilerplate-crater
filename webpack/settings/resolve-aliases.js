@@ -1,4 +1,4 @@
-import { root } from '../constants'
+import { root } from '../common'
 
 const aliases = {
   client   : `${root}/src/client`,

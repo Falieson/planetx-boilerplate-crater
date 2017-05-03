@@ -7,7 +7,7 @@ import HappyPack from 'happypack'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import nodeExternals from 'webpack-node-externals'
 
-import { root, buildDir, srcDir, globalCSS } from './constants'
+import { root, buildDir, srcDir, globalCSS } from './common'
 import { resolve } from './settings'
 
 const config = {
