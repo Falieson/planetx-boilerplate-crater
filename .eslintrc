@@ -1,7 +1,7 @@
 {
   "extends": "planetx",
   "rules": {
-    "flowtype/no-types-missing-file-annotation": 1,
+    "flowtype/no-types-missing-file-annotation": 0, //1
 
     "import/no-dynamic-require": 0,
     "import/no-extraneous-dependencies": 0,

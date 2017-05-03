@@ -34,7 +34,7 @@ function renderApp(res: ServerResponse, store: Store, assets?: Object, renderPro
   store.dispatch(push(location))
   const htmlStream = renderToStaticMarkup(
     <Html
-      title="Crater"
+      title="PlanetX Crater" // TODO: static title declaration, replace with route setting
       store={store}
       assets={assets}
       __meteor_runtime_config__={__meteor_runtime_config__} // eslint-disable-line camelcase

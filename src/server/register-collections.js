@@ -1,2 +1,2 @@
 // FIXME: webpack resolve aliases not working
-import '../universal/collections/Counts'
+import '../modules/counters/collections/Counts'

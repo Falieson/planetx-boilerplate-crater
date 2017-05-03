@@ -9,6 +9,7 @@ Steps and Commits
   - [Done](#done)
   - [Deferred](#deferred)
 - [TODO ($sort: asc)](#todo-sort-asc)
+  - [FEATURE: COUNTER](#feature-counter)
   - [OPTIMIZATIONS (optional)](#optimizations-optional)
   - [IMPROVEMENTS](#improvements)
 - [COMPLETE ($sort: desc)](#complete-sort-desc)
@@ -22,14 +23,16 @@ Steps and Commits
 
 <!-- /TOC -->
 
+---
+
 # Commits
 ## Commit Thoughts ($sort: desc)
 ## Commit Status ($sort: asc)
 ### Next
-1. PX INIT - improve v0.1.0 docs
-1. PX DEMO - INIT Counters Module
-1. PX DEMO - Counters Redux
-1. PX DEMO - Counters CRUD
+1. PX COUNTER - INIT refactor Crater counter into Counters Module
+1. PX COUNTER - Counters Module
+1. PX COUNTER - Counters Redux
+1. PX COUNTER - Counters CRUD
 
 ### Done
 1. PX INIT - doc, project plan, PlanetX & Crater in
@@ -42,12 +45,15 @@ Steps and Commits
 1. PX ESLINT - update crater for lint rules
 1. PX WEBPACK - module aliases and DRY webpack
 1. PX FLOW - INIT
+1. PX INIT - improve v0.1.0 docs
 
 ### Deferred
 
 
 # Steps
 ## TODO ($sort: asc)
+### FEATURE: COUNTER
+- [x] refactor Crater's counter into `/src/modules/ folder
 - [ ] modularize counter
 - [ ] redux counter
 - [ ] mongodb counter

@@ -1,38 +1,18 @@
 // @flow
+import type { ReEl } from 'planetx'
 
-import React, { Component } from 'react'
+import React from 'react'
 import { Meteor } from 'meteor/meteor'
-import Counts from '../collections/Counts'
+import { Page as CounterPage } from 'modules/counters/'
 
 import styles from './App.css'
 
-export default class App extends Component {
-  state = { value: 0 };
-  observer: ?{stop: Function}; // eslint-disable-line react/sort-comp
-  sub: ?{stop: Function};
-
-  componentWillMount() {
-    if (Meteor.isClient) {
-      this.sub = Meteor.subscribe('counts', 'a')
-      this.observer = Counts.find({ _id: 'a' }).observeChanges({
-        added  : (id: string, fields: Object): any => this.setState(fields), // eslint-disable-line no-unused-vars
-        changed: (id: string, fields: Object): any => this.setState(fields) // eslint-disable-line no-unused-vars
-      })
-    }
-  }
-  componentWillUnmount() {
-    if (Meteor.isClient) {
-      if (this.observer != null) { this.observer.stop() }
-      if (this.sub != null) { this.sub.stop() }
-    }
-  }
-  render(): React.Element<any> {
-    return (
-      <div className={styles.app}>
-        <h1>Welcome to Crater!</h1>
-        <h3 className="counter">Counter: {this.state.value}</h3>
-        <h3>Meteor.settings.public.test: <span className="settings-test">{Meteor.settings.public.test}</span></h3>
-      </div>
-    )
-  }
+export default function App(): ReEl {
+  return (
+    <div className={styles.app}>
+      <h1>Welcome to PlanetX Crater!</h1>
+      <CounterPage />
+      <h3>Meteor.settings.public.test: <span className="settings-test">{Meteor.settings.public.test}</span></h3>
+    </div>
+  )
 }

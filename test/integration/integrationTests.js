@@ -22,6 +22,9 @@ const src = path.join(root, 'src')
 const build = path.join(root, 'build')
 const webpack = path.join(root, 'webpack')
 
+const pageTitle = 'PlanetX Crater'
+const headerText = 'Welcome to PlanetX Crater!'
+
 /* global browser: false */
 
 function delay(ms) {
@@ -30,7 +33,7 @@ function delay(ms) {
 
 function sharedTests() {
   it('serves page with correct title', async () => {
-    expect(await browser.getTitle()).to.equal('Crater')
+    expect(await browser.getTitle()).to.equal(pageTitle)
   })
   // FIXME: tests fail even though they shouldn't
   //   it('serves page with correct header', async () => {
@@ -134,8 +137,8 @@ describe('prod mode', () => {
         await promisify(fs.writeFile)(serverFile, serverModified, 'utf8')
         await childPrinted(server, /App is listening on http/i)
 
-        const newHeader = 'Welcome to Crater! with hot reloading'
-        const appModified = appCode.replace(/Welcome to Crater!/, newHeader)
+        const newHeader = `${headerText} with hot reloading`
+        const appModified = appCode.replace(headerText, newHeader)
         await promisify(fs.writeFile)(appFile, appModified, 'utf8')
         await childPrinted(server, /App is listening on http/i)
       })
