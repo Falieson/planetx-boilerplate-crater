@@ -1,7 +1,7 @@
 Steps and Commits
 ======
 
-<!-- TOC depthFrom:2 depthTo:4 orderedList:false updateOnSave:true withLinks:true -->
+<!-- TOC depthFrom:2 depthTo:3 orderedList:false updateOnSave:true withLinks:true -->
 
 - [Commit Thoughts ($sort: desc)](#commit-thoughts-sort-desc)
 - [Commit Status ($sort: asc)](#commit-status-sort-asc)
@@ -12,22 +12,13 @@ Steps and Commits
   - [OPTIMIZATIONS (optional)](#optimizations-optional)
   - [IMPROVEMENTS](#improvements)
 - [COMPLETE ($sort: desc)](#complete-sort-desc)
+  - [FEATURE: FLOW](#feature-flow)
   - [FEATURE: WEBPACK](#feature-webpack)
-  - [FEATURE: WEBPACK](#feature-webpack-1)
   - [FEATURE: BABEL](#feature-babel)
   - [FEATURE: ESLINT](#feature-eslint)
   - [SETUP](#setup)
-    - [Downloading](#downloading)
-    - [git remotes](#git-remotes)
-    - [git branches](#git-branches)
-    - [create documentation](#create-documentation)
-    - [package shortcuts](#package-shortcuts)
-    - [package license](#package-license)
   - [INIT](#init)
   - [PRE-FLIGHT](#pre-flight)
-    - [Running tests](#running-tests)
-    - [Adding some of my MRs to #master to #webpack2](#adding-some-of-my-mrs-to-master-to-webpack2)
-    - [Differences between crater#master and crater#webpack2](#differences-between-cratermaster-and-craterwebpack2)
 
 <!-- /TOC -->
 
@@ -35,21 +26,22 @@ Steps and Commits
 ## Commit Thoughts ($sort: desc)
 ## Commit Status ($sort: asc)
 ### Next
-1. PX FLOW - INIT
+1. PX INIT - improve v0.1.0 docs
 1. PX DEMO - INIT Counters Module
 1. PX DEMO - Counters Redux
 1. PX DEMO - Counters CRUD
 
 ### Done
-1. PX INIT doc, project plan, PlanetX & Crater in
-1. PX INIT package script shortcuts
-1. PX INIT add license
-1. PX INIT fixed project steps log
+1. PX INIT - doc, project plan, PlanetX & Crater in
+1. PX INIT - package script shortcuts
+1. PX INIT - add license
+1. PX INIT - fixed project steps log
 1. PX ESLINT - INIT
 1. PX BABEL - INIT
 1. PX ESLINT - install eslint-config-planetx
 1. PX ESLINT - update crater for lint rules
 1. PX WEBPACK - module aliases and DRY webpack
+1. PX FLOW - INIT
 
 ### Deferred
 
@@ -65,7 +57,7 @@ Steps and Commits
 
 
 ## COMPLETE ($sort: desc)
-### FEATURE: WEBPACK
+### FEATURE: FLOW
 - [x] react
 - [x] javascript
 

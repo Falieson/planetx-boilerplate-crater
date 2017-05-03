@@ -6,12 +6,14 @@ import createSSR from './createSSR'
 import { WebApp } from 'meteor/webapp'
 import createDebug from 'debug'
 import buildDir from '../../buildDir'
+import './register-collections'
+import './register-methods'
 
 const shutdownDebug = createDebug('crater:shutdown')
 
-import '../universal/collections/Counts'
-
 const app = express()
+// eslint-disable-next-line no-unused-vars
+app.get('/test', (req: Object, res: Object): any => res.send('hello world'))
 
 app.use((req: Object, res: Object, next: Function) => {
   if (/\/favicon\.?(jpe?g|png|ico|gif)?$/i.test(req.url)) {

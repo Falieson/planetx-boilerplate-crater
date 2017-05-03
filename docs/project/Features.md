@@ -1,23 +1,23 @@
-# Documentation
+Features
+======
 
-# Config
-- Settings
-    - [x] .nvmrc 
-    - [x] .gitignore
-    <!--- [ ] settings.production.json :: meteor server settings-->
-    <!--- [ ] settings.test.json :: meteor server settings-->
-    
-- ESLint
-    - [x] modularized into package `eslint-config-planetx`
-    - [x] es2017 preferences
+## Config
+- [x] .nvmrc 
+- [x] .gitignore
+<!--- [ ] settings.production.json :: meteor server settings-->
+<!--- [ ] settings.test.json :: meteor server settings-->
 
-- Babel
-    - [x] es2017 support
+## ESlint
+- [x] modularized into package `eslint-config-planetx`
+- [x] es2017 preferences
 
-- Webpack
-    - [x] module aliases
-    - [x] DRY webpack
+## Babel
+- [x] es2017 support
 
-- Flowtype
-    - [x] react
-    - [x] javascript
+## Webpack
+- [x] module aliases
+- [x] DRY webpack
+
+## Flowtype
+- [x] react
+- [x] javascript

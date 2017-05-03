@@ -1,7 +1,7 @@
 planetx-boilerplate-crater
 ======
 
-PlanetX flavor of [Crater](http://github.com/jcoreio/crater)
+PlanetX flavor of [Crater](https://github.com/jcoreio/crater)
 ------
 
 <!-- TOC depthFrom:1 depthTo:2 orderedList:false updateOnSave:true withLinks:true -->
@@ -148,7 +148,7 @@ npm run test
 ```
 This runs an integration test that successively runs dev and prod mode via the commands above, and tests that Meteor
 integration is working via [PhantomJS](https://www.npmjs.com/package/phantomjs-prebuilt) and
-[Webdriver.IO](http://webdriver.io/).
+[Webdriver.IO](https://webdriver.io/).
 
 It also tests the docker build, so you need to have `docker` and `docker-compose` installed for the docker test to pass.
 
