@@ -27,9 +27,11 @@ Steps and Commits
 
 # Commits
 ## Commit Thoughts ($sort: desc)
+13. [jcoreio/crater issue#152](https://github.com/jcoreio/crater/issues/152) global css-loader is broken
+
 ## Commit Status ($sort: asc)
 ### Next
-1. PX COUNTER - INIT refactor Crater counter into Counters Module
+1. PX SHELL - INIT - header & dark theme (material-ui)
 1. PX COUNTER - Counters Module
 1. PX COUNTER - Counters Redux
 1. PX COUNTER - Counters CRUD
@@ -46,6 +48,7 @@ Steps and Commits
 1. PX WEBPACK - module aliases and DRY webpack
 1. PX FLOW - INIT
 1. PX INIT - improve v0.1.0 docs
+1. PX COUNTER - INIT refactor Crater counter into Counters Module
 
 ### Deferred
 

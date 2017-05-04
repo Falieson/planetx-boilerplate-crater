@@ -1,5 +1,5 @@
 [ignore]
-<PROJECT_ROOT>/build/**/.*
+.*/build/**/.*
 .*/meteor-tool/.*
 <PROJECT_ROOT>/meteor/.*
 .*/node_modules/.*

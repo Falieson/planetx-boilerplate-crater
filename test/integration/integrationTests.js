@@ -222,7 +222,7 @@ describe('docker build', () => {
 describe('dev mode', () => {
   let server
 
-  const appFile = path.join(src, 'universal', 'components', 'App.js')
+  const appFile = path.join(src, 'universal', 'pages', 'Home.js')
   const serverFile = path.join(src, 'server', 'index.js')
   let appCode
   let serverCode

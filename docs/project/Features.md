@@ -1,11 +1,10 @@
 Features
 ======
-
 ## Config
 - [x] .nvmrc 
 - [x] .gitignore
-<!--- [ ] settings.production.json :: meteor server settings-->
-<!--- [ ] settings.test.json :: meteor server settings-->
+- [ ] settings.test.json :: meteor server settings
+- [ ] settings.production.json :: meteor server settings
 
 ## ESlint
 - [x] modularized into package `eslint-config-planetx`
@@ -21,3 +20,20 @@ Features
 ## Flowtype
 - [x] react
 - [x] javascript
+
+## Counters
+- [ ] modularized version of crater's counter
+- [ ] counters: counter CRUD and conterList
+- [ ] counters: redux
+- [ ] counters: collections
+
+## Enzyme (Unit Testing)
+- [ ] setup
+- [ ] app unit tests
+- [ ] counter unit tests
+
+## Continuous Integration
+- [ ] .travis.yml
+- [ ] greenkeeper
+- [ ] coveralls
+

@@ -4,10 +4,14 @@
 import type { Store, State } from '../universal/flowtypes/redux'
 
 import React, { Component, PropTypes } from 'react'
-import { Router, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
-import routes from '../universal/routes/index'
+import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
+
+import PXShell from '../modules/shell/'
+
+import routes from '../universal/routes/'
+import appMeta from '../universal/meta/'
 
 type Props = {
   store: Store,
@@ -25,9 +29,9 @@ export default class Root extends Component<void, Props, void> {
     })
     return (
       <Provider store={store}>
-        <div>
+        <PXShell {...appMeta}>
           <Router history={history} routes={routes(store)} />
-        </div>
+        </PXShell>
       </Provider>
     )
   }

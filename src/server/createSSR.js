@@ -14,6 +14,7 @@ import fs from 'fs'
 import path, { join } from 'path'
 import url from 'url'
 import Html from './Html'
+import appMeta from '../universal/meta/'
 
 
 const __meteor_runtime_config__ = { // eslint-disable-line camelcase
@@ -35,6 +36,7 @@ function renderApp(res: ServerResponse, store: Store, assets?: Object, renderPro
   const htmlStream = renderToStaticMarkup(
     <Html
       title="PlanetX Crater" // TODO: static title declaration, replace with route setting
+      theme={appMeta.theme}
       store={store}
       assets={assets}
       __meteor_runtime_config__={__meteor_runtime_config__} // eslint-disable-line camelcase
