@@ -11,6 +11,7 @@ import { RouterContext } from 'react-router'
 
 // $FlowFixMe ignored-directory
 import { renderToString } from 'react-dom-stream/server'
+
 import styles from '../modules/shell/styles/global.css.js'
 
 // Injects the server rendered state and app into a basic html template
@@ -37,7 +38,7 @@ export default class Html extends Component {
       </Provider>
     )
 
-    // const chosenTheme = theme === 'dark' ? 'px-shell-body--dark' : false // FIXME: styles as class
+    // const chosenTheme = theme === 'dark' ? 'px-shell-body--dark' : false // FIXME: [issue#152](https://github.com/jcoreio/crater/issues/152) styles as class
 
     return (
       <html lang="en">

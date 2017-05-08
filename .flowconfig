@@ -1,4 +1,5 @@
 [ignore]
+.*/.trash/.*
 .*/build/**/.*
 .*/meteor-tool/.*
 <PROJECT_ROOT>/meteor/.*

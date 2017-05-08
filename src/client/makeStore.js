@@ -1,19 +1,24 @@
 /* eslint-env node*/
 /* @flow */
-import type { Store } from '../universal/flowtypes/redux'
+import type { Store } from 'universal/flowtypes/redux'
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Map as iMap } from 'immutable'
+// middlewares
 import { routerMiddleware } from 'react-router-redux'
 import { browserHistory } from 'react-router'
-import makeReducer from '../universal/redux/makeReducer'
+import thunk from 'redux-thunk'
+
+import makeReducer from 'universal/redux/makeReducer'
 
 export default (initialState: iMap<string, any>): Store => {
   let store
   const reducer = makeReducer()
   const reduxRouterMiddleware = routerMiddleware(browserHistory)
+
   const middlewares = [
-    reduxRouterMiddleware
+    reduxRouterMiddleware,
+    thunk
   ]
 
   if (process.env.NODE_ENV === 'production') {

@@ -1,11 +1,11 @@
 const body = {
   dark: {
-    height         : '100%',
     fontFamily     : "'Roboto', sans-serif",
-    backgroundColor: 'rgb(34, 34, 34)',
+    backgroundColor: 'rgb(8, 0, 13)',
     color          : 'rgb(245, 242, 233)',
-    margin         : '0'
-    // TODO: add gutter for over 1200px
+    margin         : '0',
+    maxWidth       : '1250px',
+    padding        : '0 10px'
   },
 
   light: {

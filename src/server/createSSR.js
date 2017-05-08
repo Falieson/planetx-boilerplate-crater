@@ -35,7 +35,7 @@ function renderApp(res: ServerResponse, store: Store, assets?: Object, renderPro
   store.dispatch(push(location))
   const htmlStream = renderToStaticMarkup(
     <Html
-      title="PlanetX Crater" // TODO: static title declaration, replace with route setting
+      title="PlanetX Crater" // TODO: replace static title declaration with route specific title
       theme={appMeta.theme}
       store={store}
       assets={assets}

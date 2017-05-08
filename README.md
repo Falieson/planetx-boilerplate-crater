@@ -28,6 +28,9 @@ PlanetX flavor of [Crater](https://github.com/jcoreio/crater)
 <!-- /TOC -->
 
 ---
+Screenshot
+------
+![alt text](https://raw.githubusercontent.com/PlanetXjs/planetxjs.github.io/master/assets/px-react-materialui-counters/PX_COUNTER_REDUX.gif)
 
 # Documentation
 ```

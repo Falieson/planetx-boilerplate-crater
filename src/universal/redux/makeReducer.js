@@ -1,13 +1,24 @@
+/* makeReducer - util to add reducers to the root reducer
+-- (ISSUE) apparently breaks css-loader
+-- (ISSUE) module aliases aren't working
+*/
+
 // @flow
+import type { Reducer } from 'universal/flowtypes/redux'
 
 import { combineReducers } from 'redux-immutablejs'
 import { routerReducer } from 'react-router-redux'
-import type { Reducer } from '../flowtypes/redux'
+
+// FIXME: [css-loader] breaks when using this import of an export
+// import { reducer as counterReducer } from '../../modules/counters/'
+import counterReducer from '../../modules/counters/redux/reducer'
 
 const currentReducers: {[key: string]: Reducer} = {
-  router: routerReducer
+  router     : routerReducer,
+  px_counters: counterReducer
 }
 
+// FIXME: [css-loader] breaks when using makeReducer
 export default (newReducers?: {[key: string]: Reducer} = {}): Reducer => {
   Object.assign(currentReducers, newReducers)
   return combineReducers(currentReducers)

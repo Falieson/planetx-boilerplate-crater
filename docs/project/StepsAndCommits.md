@@ -27,17 +27,23 @@ Steps and Commits
 
 # Commits
 ## Commit Thoughts ($sort: desc)
+
 13. [jcoreio/crater issue#152](https://github.com/jcoreio/crater/issues/152) global css-loader is broken
 
 ## Commit Status ($sort: asc)
 ### Next
-1. PX SHELL - INIT - header & dark theme (material-ui)
-1. PX COUNTER - Counters Module
-1. PX COUNTER - Counters Redux
-1. PX COUNTER - Counters CRUD
+
+1. PX COUNTER - Counters Module with `react-redux`
+1. PX COUNTER - Counters CRUD MongoDB
+1. PX COUNTER - Counters with `redux-observable` (RxJS & Recompose) & `redux-actions` & redux-action-proxies
+1. PX COUNTER - Update url with counterId and load counter by url
+1. PX COUNTER - Test Coverage
+1. PX BABEL - install babel-preset-planetx
+1. PX TIMER - Extend Counter to do more demos of RxJS
 
 ### Done
-1. PX INIT - doc, project plan, PlanetX & Crater in
+
+1. PX INIT - doc, project plan, PlanetX & Crater info
 1. PX INIT - package script shortcuts
 1. PX INIT - add license
 1. PX INIT - fixed project steps log
@@ -49,6 +55,7 @@ Steps and Commits
 1. PX FLOW - INIT
 1. PX INIT - improve v0.1.0 docs
 1. PX COUNTER - INIT refactor Crater counter into Counters Module
+1. PX SHELL - INIT - header & dark theme (material-ui) - BROKEN integration tests
 
 ### Deferred
 
@@ -56,10 +63,13 @@ Steps and Commits
 # Steps
 ## TODO ($sort: asc)
 ### FEATURE: COUNTER
+
 - [x] refactor Crater's counter into `/src/modules/ folder
-- [ ] modularize counter
-- [ ] redux counter
-- [ ] mongodb counter
+- [x] create counter and counterList module with react, redux, thunk
+- [ ] meteor react data with mongodb
+- [ ] adv. redux: RxJS & redux & proxies
+- [ ] test coverage
+- [ ] upgrade to timer (more RxJS)
 
 ### OPTIMIZATIONS (optional)
 ### IMPROVEMENTS
@@ -67,18 +77,22 @@ Steps and Commits
 
 ## COMPLETE ($sort: desc)
 ### FEATURE: FLOW
+
 - [x] react
 - [x] javascript
 
 ### FEATURE: WEBPACK
+
 - [x] module aliases
 - [x] DRY webpack
 
 ### FEATURE: BABEL
+
 - [x] es2017
 - [x] es2017 decorators
 
 ### FEATURE: ESLINT
+
 - [x] update crater skeleton to conform to `eslint-config-planetx`
 - [x] refactored everything out into [eslint-config-planetx](/falieson/eslint-config-planetx)
 - [x] install eslint lodash
@@ -167,11 +181,13 @@ Deleted branch webpack2_for-pr_142-144-145 (was f051aaa).
 ```
 
 #### package license
+
 - Since Crater is ISC I'm going to use them. Createad `/LICENSE`
 - jcoreio/crater didn't have a license file so I created a [PR](https://github.com/jcoreio/crater/pull/147) and file `/docs/licenses/CRATER_LICENSE`
 
 
 ### INIT
+
 - Structure Project & Create Project Description
 - Create Plan
 

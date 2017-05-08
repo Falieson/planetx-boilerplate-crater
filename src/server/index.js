@@ -7,6 +7,7 @@ import { WebApp } from 'meteor/webapp'
 import createDebug from 'debug'
 import buildDir from '../../buildDir'
 import './register-collections'
+import './register-publications'
 import './register-methods'
 
 const shutdownDebug = createDebug('crater:shutdown')

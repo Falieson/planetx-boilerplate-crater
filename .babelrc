@@ -1,16 +1,16 @@
 {
   "presets": [
-    "es2015",
-    "es2017",
-    "stage-1",
+    "latest",
     "react",
-    "flow"
+    "flow",
+    "stage-1"
   ],
   "plugins": [
     "transform-decorators-legacy",
     "transform-object-rest-spread",
     "transform-runtime",
-    "meteor-imports"
+    "meteor-imports",
+    ["lodash", { "id": ["lodash"] }]
   ],
   "env": {
     "dev": {

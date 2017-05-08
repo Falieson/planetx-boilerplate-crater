@@ -10,3 +10,10 @@ Secondary Goals:
 1. tutorial about planetx-crater-counter
 1. [x] -another repo [eslint-config-planetx] rather than airbnb with all my eslint config-
 
+# UX Flow
+1. First(or any) Visit & No Counters
+=> auto create first counter with a friendly title
+
+1. Any Visit w/ Counters - List Counters
+=> load counters sortBy lastUpdated$dec
+

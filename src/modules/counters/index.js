@@ -1,7 +1,12 @@
-// import Counter from './counter/'
-// import CounterList from './counterList/'
-import Page from './demo/'
+import Counter from './counter/'
+import CounterList from './counterList/'
+import Page from './pages/'
+
+import reducer from './redux/reducer'
 
 export {
-  Page
+  Page,
+  Counter,
+  CounterList,
+  reducer
 }

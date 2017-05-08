@@ -4,7 +4,7 @@ import type { ReEl } from 'planetx'
 import React from 'react'
 import { Meteor } from 'meteor/meteor'
 
-import ContentPanel from '../components/ContentPanel'
+import { ContentPanel } from 'modules/material-ui-factories/'
 import { Page as CounterPage } from 'modules/counters/'
 
 import styles from './Home.css'
