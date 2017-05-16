@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 
-import CanvasBackground from '../../seti/space_background'
+import CanvasBackground from '../../backgrounds/space_background'
 
 import Header from '../components/header'
 import Content from '../components/content'
@@ -26,6 +26,7 @@ const PXShell = (props: Props): ReCo => {
     <MuiThemeProvider muiTheme={getMuiTheme(chosenTheme)}>
       <div className={styles.root}>
         <CanvasBackground />
+
         <Header title={props.title} />
         <Content>
           {props.children}
@@ -37,3 +38,14 @@ const PXShell = (props: Props): ReCo => {
 
 export default PXShell
 
+
+/*
+      <div className={styles.root}>
+        <CanvasBackground />
+                <Header title={props.title} />
+        <Content>
+          {props.children}
+        </Content>
+
+      </div>
+*/

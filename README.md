@@ -4,6 +4,12 @@ planetx-boilerplate-crater
 PlanetX flavor of [Crater](https://github.com/jcoreio/crater)
 ------
 
+CURRENT: n/a ~~
+NEXT: v0.1.0, 2017/05/15 ~~
+Created 2017/05/15
+
+---
+
 <!-- TOC depthFrom:1 depthTo:2 orderedList:false updateOnSave:true withLinks:true -->
 
 - [Documentation](#documentation)
@@ -35,18 +41,19 @@ Screenshot
 # Documentation
 ```
 /docs/
-  ./PLANETX_CRATER_WALKTHROUGH.md         - Overview of the Repository (start with this or README.md)
-  ./CRATER_README.md                      - Original `crater/README.md` - Boilerplate features, differences from MeteorJS
-  ./CRATER_FAQ.md                         - My notes for how to use Crater
-  ./CHANGELOG.md                          - Changes by version number
+  ./PLANETX_QUICKSTART.md          - Project Configurations
+  ./CRATER_FAQ.md                  - My notes for how to use Crater
+  ./CHANGELOG.md                   - Changes by version number
+  ./PLANETX_CRATER_WALKTHROUGH.md  - Overview of PlanetX vs original Crater
+  ./CRATER_README.md               - Original `crater/README.md`
   
 /docs/project/
-  ./ProjectDescription.md                 - What it is the package is about
-  ./FeaturePlan.md                        - How I think each piece should work
-  ./StepsAndCommits.md                    - What I'm thinking along the way
-  ./Maintanence.md                        - Notes about maintaining the project
+  ./ProjectDescription.md          - What it is the package is about
+  ./FeaturePlan.md                 - How I think each piece should work
+  ./StepsAndCommits.md             - What I'm thinking along the way
+  ./Maintanence.md                 - Notes about maintaining the project
 
-/README.md (this)                         - Developer Notes
+/README.md (this)                  - Developer Notes
 ```
 
 # Requirements
@@ -57,11 +64,10 @@ Screenshot
 
 # Development
 ## Startup
-~~*Note 1*: I prefer yarn, so I have replaced `npm` and `npm run` in the notes below with `yarn`~~<br/>
-Note 1: I preferred yarn but the latest version doesn't support node6lts so everything has been changed back to using npm<br/>
-*Note 2*: dev mode only renders a basic page on the server side; only prod mode and the built app render your routes
-on the server side.
-Make sure to install deps before running the app for the first time:
+*Tip:* anytime you type `npm` or `npm run` you could use `yarn` instead <br />
+*Note 1:* dev mode only renders a basic page on the server side; only prod mode and the built app render your routes on the server side.<br />
+*Note 2:* Make sure to install deps before running the app for the first time:
+
 ```
 npm i
 ```

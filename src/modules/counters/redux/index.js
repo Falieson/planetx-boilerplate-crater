@@ -1,3 +1,4 @@
 /* eslint import/prefer-default-export: 0 */
 
-export * as ACTIONS from './actions/updateCounter.js'
+export ACTIONS from './actions/'
+export reducer from './reducers/'

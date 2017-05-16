@@ -11,7 +11,10 @@ export type State = {
 }
 
 export const defaultState: State = {
-  counter    : { value: 0 },
-  counters   : { records: {} },
+  counter : { value: 0 },
+  counters: {
+    records: {},
+    meta   : { recordsAmount: 0 }
+  },
   lastUpdated: false
 }

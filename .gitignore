@@ -3,6 +3,7 @@
 .meteor/dev_bundle/
 .meteor/local/
 .nyc_output
+.trash/
 build
 coverage
 errorShots

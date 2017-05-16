@@ -7,12 +7,12 @@
 // @flow
 import type { ReEl, FSAction, InputEvent } from 'planetx'
 import type { Dispatch } from 'redux'
-import type { CounterItem } from '../helpers/flowtypes'
+import type { CounterItems, CounterItem } from '../helpers/flowtypes'
 
 import { Meteor } from 'meteor/meteor'
-// import { autobind } from 'core-decorators'
 // DATA
-// import Counters from '../db/collections'
+import { createContainer } from 'react-meteor-data'
+import Counters from '../db/collections'
 import { ACTIONS } from '../redux/'
 // React & Redux
 import React, { Component } from 'react'
@@ -23,25 +23,47 @@ import List from './list'
 import styles from './counterList.css'
 
 type Props = {
-  lastUpdated: Date | boolean,
-  counters: Array<CounterItem>,
+  sessionId: string,
+  loading: boolean,
+  counters: CounterItems,
   counterName: string,
   counterId: string,
   handleCreateCounter: Function,
-  handleRenameCounter: Function
+  handleRenameCounter: Function,
+  handleUpdateCounterList: Function
 }
 
-// $//FlowHasTrouble autobind
-// @autobind
-class CounterListContainer extends Component {
-  // observer: ?{stop: Function} // eslint-disable-line react/sort-comp
-  // sub: ?{stop: Function}
+class CounterList extends Component {
+  observer: ?{stop: Function} // eslint-disable-line react/sort-comp
+  sub: ?{stop: Function}
   props: Props // eslint-disable-line react/sort-comp
 
   componentWillMount() {
-    const { lastUpdated, handleCreateCounter } = this.props
-    if(!lastUpdated) {
-      handleCreateCounter('First counter')
+    const {
+      counters, loading, handleUpdateCounterList
+    } = this.props
+
+    handleUpdateCounterList(counters, loading)
+
+    this.generateDefaultCounter()
+  }
+
+  componentWillUpdate(np: Props) {
+    const cp = this.props
+
+    const diffCountersAmount = (np.counters) && (np.counters.length !== cp.counters.length)
+
+    if(diffCountersAmount) {
+      this.props.handleUpdateCounterList(np.counters, np.loading)
+    }
+  }
+
+  generateDefaultCounter() {
+    const { sessionId, handleCreateCounter } = this.props
+    const userExists = Counters.find({ sessionId }).fetch().length > 0
+
+    if(!userExists) {
+      handleCreateCounter('First counter', sessionId)
     }
   }
 
@@ -92,27 +114,33 @@ class CounterListContainer extends Component {
 }
 
 /* eslint-disable camelcase */
-function mapStoreToProps(state: Object): Object {
+function mapStoreToProps(state: Object, ownProps: Props): Object {
   // FIXME: [redux] connect isn't building the object properly
   // should be:
   // const {
-  //   px_counters
+  //   px_shell, px_counters
   // } = state
 
-  const px_counters = state._root.entries[1][1]
+  const px_shell = state._root.entries[1][1]
 
   const {
-    counters: { records },
+    sessionId,
+    userId
+  } = px_shell
+
+  const px_counters = state._root.entries[2][1]
+
+  const {
     counter: { name, _id },
     lastUpdated
   } = px_counters || {
-    counters   : { records: {} },
     counter    : { _id: undefined, value: 0, name: '' },
-    lastUpdated: false
+    lastUpdated: ownProps.lastUpdated || false
   }
 
   return {
-    counters   : records,
+    sessionId,
+    userId,
     counterName: name,
     counterId  : _id,
     lastUpdated
@@ -127,14 +155,33 @@ function mapDispatchToProps(dispatch: Dispatch<FSAction>): Object {
         ACTIONS.renameCounter(_id, name)
       )
     },
-    handleCreateCounter: (name: string) => {
+    handleCreateCounter: (name: string, sessionId: string) => {
       dispatch(
-        ACTIONS.newCounter(name)
+        ACTIONS.newCounter(name, sessionId)
+      )
+    },
+    handleUpdateCounterList: (records: CounterItem, loading: boolean, error: boolean) => {
+      dispatch(
+        ACTIONS.updateCounterList(records, loading, error)
       )
     }
   }
 }
 
-const ConnectedCounterListContainer = connect(mapStoreToProps, mapDispatchToProps)(CounterListContainer)
+// Meteor => Redux => CounterList
+const ConnectedCounterList = connect(mapStoreToProps, mapDispatchToProps)(CounterList)
+
+const ConnectedCounterListContainer = createContainer((): Object => {
+  // Do all your reactive data access in this method.
+  // Note that this subscription will get cleaned up when your component is unmounted
+  const handle = Meteor.subscribe('counters.all')
+
+  return {
+    loading    : !handle.ready(),
+    counters   : Counters.find().fetch(),
+    lastUpdated: !!handle.ready() && new Date()
+  }
+}, ConnectedCounterList)
+
 export default ConnectedCounterListContainer
 

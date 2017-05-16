@@ -1,3 +1,5 @@
+/* Content Panel | planetx-react-materialui-factories */
+
 // @flow
 import type { ReCo } from 'planetx'
 

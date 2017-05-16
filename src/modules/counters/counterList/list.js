@@ -25,6 +25,7 @@ import styles from './list.css'
 
 type Props = {
   counters: {[key: string]: CounterItem},
+  sessionId: string,
   handleCreateCounter: Function,
   handleSelectCounter: Function,
   handleDeleteCounter: Function
@@ -39,9 +40,11 @@ class CounterList extends Component {
     counters: []
   }
 
+  chipIndex: number = 0
+
   render(): ReEl {
     const {
-      counters, handleCreateCounter, handleSelectCounter, handleDeleteCounter
+      counters, sessionId, handleCreateCounter, handleSelectCounter, handleDeleteCounter
     } = this.props
 
     const errorMessage = counters.length === 0
@@ -50,13 +53,18 @@ class CounterList extends Component {
     const style = {
       margin: 4
     }
+    const key = (): number => {
+      this.chipIndex += 1
+      return this.chipIndex
+    }
 
     const renderAddItem: ReEl = (
       <Chip
         {...{
           style,
+          key            : key(),
           backgroundColor: lightGreen900,
-          onTouchTap     : (): void => handleCreateCounter()
+          onTouchTap     : (): void => handleCreateCounter(sessionId)
         }}
       >
         <Avatar backgroundColor={lightGreen800} icon={<AddCircle />} />
@@ -66,9 +74,6 @@ class CounterList extends Component {
       </Chip>
     )
 
-    // const onTouchTap = (): Fucntion => {} // handleSelectCounter(_id)  // sets the counterId in counterWidget
-    // const onRequestDelete = () => {} // handleDeleteCounter(_id) . // runs ~~archive~~ delete counterRecord
-
     return (
       <div className={styles.container}>
         {errorMessage}
@@ -76,15 +81,18 @@ class CounterList extends Component {
         {renderAddItem}
         {Object.keys(counters).map((k: string): ReEl => (
           <Chip
+            key
             {...{
               style,
+              key            : key(),
               backgroundColor: teal900,
               onTouchTap     : (): void => handleSelectCounter(counters[k]._id),
               onRequestDelete: (): void => handleDeleteCounter(counters[k]._id)
             }}
           >
             <div style={{ minWidth: 30 }}>
-              {typeof (counters[k].name) === 'string' && counters[k].name.length > 0 ? counters[k].name : `#${counters[k]._id.substring(0, 4)}`}
+              {typeof (counters[k].name) === 'string' && counters[k].name.length > 0 ?
+                counters[k].name : `#${counters[k]._id.substring(0, 4)}`}
             </div>
           </Chip>
       ))}
@@ -101,15 +109,25 @@ function mapStoreToProps(state: Object): Object {
   //   px_counters
   // } = state
 
-  const px_counters = state._root.entries[1][1]
+  const px_shell = state._root.entries[1][1]
 
   const {
-    counters: { records }
+    sessionId,
+    userId
+  } = px_shell
+
+  const px_counters = state._root.entries[2][1]
+
+  const {
+    counters: { records, loading }
   } = px_counters || {
-    counters: { records: [] }
+    counters: { records: [], loading: true }
   }
 
   return {
+    sessionId,
+    userId,
+    loading,
     counters: records
   }
 }
@@ -117,9 +135,9 @@ function mapStoreToProps(state: Object): Object {
 
 function mapDispatchToProps(dispatch: Dispatch<FSAction>): Object {
   return {
-    handleCreateCounter: () => {
+    handleCreateCounter: (sessionId: string) => {
       dispatch(
-        ACTIONS.newCounter()
+        ACTIONS.newCounter(undefined, sessionId)
       )
     },
     handleSelectCounter: (_id: string) => {

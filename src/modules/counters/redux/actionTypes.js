@@ -11,8 +11,9 @@
 import { reduxUtil } from '../../utils/'
 
 const {
-  actionType,
+  actionTypeFactory: actionType,
   UI_COMMON,
+  CREATE_CYCLE,
   FETCH_CYCLE,
   UPDATE_CYCLE,
   DELETE_CYCLE
@@ -23,7 +24,8 @@ const BASE: string = 'PX'
 const WIDGETS: Array<string> = ['COUNTER', 'COUNTERLIST']
 const COUNTER_WIDGET: Array<string> = ['INCREMENT', 'DECREMENT', ...UI_COMMON]
 
-const actionTypes: Object = Object.assign({},
+const types: Object = Object.assign({},
+  // COUNTER ACTIONS
   actionType([WIDGETS[0], COUNTER_WIDGET[0]], BASE),
   actionType([WIDGETS[0], COUNTER_WIDGET[1]], BASE),
   actionType([WIDGETS[0], COUNTER_WIDGET[2]], BASE),
@@ -31,27 +33,40 @@ const actionTypes: Object = Object.assign({},
   actionType([WIDGETS[0], COUNTER_WIDGET[4]], BASE),
   actionType([WIDGETS[0], COUNTER_WIDGET[5]], BASE),
 
+  actionType([WIDGETS[0], CREATE_CYCLE[0]], BASE),
+  actionType([WIDGETS[0], CREATE_CYCLE[1]], BASE),
+  actionType([WIDGETS[0], CREATE_CYCLE[2]], BASE),
+
   actionType([WIDGETS[0], FETCH_CYCLE[0]], BASE),
   actionType([WIDGETS[0], FETCH_CYCLE[1]], BASE),
   actionType([WIDGETS[0], FETCH_CYCLE[2]], BASE),
+
   actionType([WIDGETS[0], UPDATE_CYCLE[0]], BASE),
   actionType([WIDGETS[0], UPDATE_CYCLE[1]], BASE),
   actionType([WIDGETS[0], UPDATE_CYCLE[2]], BASE),
+
   actionType([WIDGETS[0], DELETE_CYCLE[0]], BASE),
   actionType([WIDGETS[0], DELETE_CYCLE[1]], BASE),
   actionType([WIDGETS[0], DELETE_CYCLE[2]], BASE),
 
+  // COUNTERLIST ACTIONS
   actionType([WIDGETS[1], FETCH_CYCLE[0]], BASE),
   actionType([WIDGETS[1], FETCH_CYCLE[1]], BASE),
   actionType([WIDGETS[1], FETCH_CYCLE[2]], BASE),
-  actionType([WIDGETS[1], UPDATE_CYCLE[0]], BASE),
-  actionType([WIDGETS[1], UPDATE_CYCLE[1]], BASE),
-  actionType([WIDGETS[1], UPDATE_CYCLE[2]], BASE),
-  actionType([WIDGETS[1], DELETE_CYCLE[0]], BASE),
-  actionType([WIDGETS[1], DELETE_CYCLE[1]], BASE),
-  actionType([WIDGETS[1], DELETE_CYCLE[2]], BASE)
 )
 
-// console.log({ actionTypes })
+// console.log({ types })
+
+// actionType-proxy
+const typeValidator = {
+  get(obj: Object, prop: any): any {
+    if (obj[prop]) {
+      return obj[prop]
+    }
+    throw new TypeError(`${prop} is not a valid action type`)
+  }
+}
+
+const actionTypes = new Proxy(types, typeValidator)
 
 export default actionTypes

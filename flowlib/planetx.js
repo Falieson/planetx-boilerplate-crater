@@ -44,4 +44,10 @@ declare module 'planetx' {
   declare type Store = _Store<State, Action>
   declare type Dispatch = _Dispatch<Action>
   declare type Reducer = _Reducer<State, Action>
+
+  // == ASYNC
+  declare type StandardCallback = {
+    error?: Object | string,
+    response?: any
+  }
 }

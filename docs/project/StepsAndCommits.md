@@ -33,11 +33,11 @@ Steps and Commits
 ## Commit Status ($sort: asc)
 ### Next
 
-1. PX COUNTER - Counters Module with `react-redux`
-1. PX COUNTER - Counters CRUD MongoDB
-1. PX COUNTER - Counters with `redux-observable` (RxJS & Recompose) & `redux-actions` & redux-action-proxies
-1. PX COUNTER - Update url with counterId and load counter by url
-1. PX COUNTER - Test Coverage
+1. PX COUNTERS - Counters CRUD MongoDB && BACKGROUNDS - Rainbow Universe
+1. PX COUNTERS - Counters with 'redux-observable' (RxJS & Recompose) & 'redux-actions' & redux-action-proxies
+1. PX COUNTERS - Update url with counterId and load counter by url
+1. PX COUNTERS - Test Coverage
+1. PX COUNTERS - Integrate w/ px-react-materialui-auth
 1. PX BABEL - install babel-preset-planetx
 1. PX TIMER - Extend Counter to do more demos of RxJS
 
@@ -54,8 +54,9 @@ Steps and Commits
 1. PX WEBPACK - module aliases and DRY webpack
 1. PX FLOW - INIT
 1. PX INIT - improve v0.1.0 docs
-1. PX COUNTER - INIT refactor Crater counter into Counters Module
+1. PX COUNTERS - INIT refactor Crater counter into Counters Module
 1. PX SHELL - INIT - header & dark theme (material-ui) - BROKEN integration tests
+1. PX COUNTERS - Counters Module with 'react-redux'
 
 ### Deferred
 
@@ -67,9 +68,6 @@ Steps and Commits
 - [x] refactor Crater's counter into `/src/modules/ folder
 - [x] create counter and counterList module with react, redux, thunk
 - [ ] meteor react data with mongodb
-- [ ] adv. redux: RxJS & redux & proxies
-- [ ] test coverage
-- [ ] upgrade to timer (more RxJS)
 
 ### OPTIMIZATIONS (optional)
 ### IMPROVEMENTS

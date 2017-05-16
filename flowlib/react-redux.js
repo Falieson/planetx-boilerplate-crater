@@ -1,7 +1,6 @@
 import type { Dispatch, Store } from 'redux'
 
 declare module 'react-redux' {
-
   /*
 
     S = State
@@ -69,5 +68,4 @@ declare module 'react-redux' {
     mergeProps: MergeProps<SP, DP, OP, P>,
     options?: ConnectOptions
   ): Connector<OP, P>;
-
 }

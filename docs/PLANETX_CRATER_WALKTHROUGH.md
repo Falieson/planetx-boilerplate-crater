@@ -7,7 +7,7 @@ This project rests atop the shoulders of giants to deliver an even stronger proj
 Keywords: ES7+, React, Flow, ESlint, Webpack2, MaterialUI, DarkTheme, Modular, Counters CRUD Demo
 
 
-<!-- TOC -->
+<!-- TOC depthFrom:1 depthTo:3 orderedList:false updateOnSave:true withLinks:true -->
 
 - [What is Meteor, Meatier, and Crater?](#what-is-meteor-meatier-and-crater)
   - [Whats great about Meteor?](#whats-great-about-meteor)
@@ -85,23 +85,26 @@ I propose some improvements that are appropriate via my fork [falieson/crater](h
 
 # WHERE to START
 - with `/README.md`
+- with `/docs/PLANETX_QUICKSTART.md`
 - with Crater's readme at `/docs/CRATER_README.md`
 - with the doc files listed in the README.md
 - how to do something with this stack? Meteor Guide or google/stackoverflow
+
 ```
-/README.md                                - Developer Notes
+/README.md                         - Developer Notes
 
 /docs/
-  ./PLANETX_CRATER_WALKTHROUGH.md         - Overview of PlanetX vs original Crater
-  ./CRATER_README.md                      - Original `crater/README.md`
-  ./CRATER_FAQ.md                         - My notes for how to use Crater
-  ./CHANGELOG.md                          - Changes by version number
+  ./PLANETX_QUICKSTART.md          - Project Configurations
+  ./CRATER_FAQ.md                  - My notes for how to use Crater
+  ./CHANGELOG.md                   - Changes by version number
+  ./PLANETX_CRATER_WALKTHROUGH.md  - Overview of PlanetX vs original Crater
+  ./CRATER_README.md               - Original `crater/README.md`
   
 /docs/project/
-  ./ProjectDescription.md                 - What it is the package is about
-  ./FeaturePlan.md                        - How I think each piece should work
-  ./StepsAndCommits.md                    - What I'm thinking along the way
-  ./Maintanence.md                        - Notes about maintaining the project
+  ./ProjectDescription.md          - What it is the package is about
+  ./FeaturePlan.md                 - How I think each piece should work
+  ./StepsAndCommits.md             - What I'm thinking along the way
+  ./Maintanence.md                 - Notes about maintaining the project
 ```
 
 ## file structure
@@ -109,14 +112,17 @@ I propose some improvements that are appropriate via my fork [falieson/crater](h
 /package.json                   - npm packages
 /meteor/.meteor/packages        - atmosophere (Meteor) packages
 /scripts/                       - Crater stuff
-/project/ && /docs/             - Documentation
+/docs/ && /docs/project/        - Documentation
 /src/                           - The Code Base
     server/                     - Server only code: (SSR, WebServer, and registers)
     client/                     - Client only code, hooks for client only modules
     styles/                     - Crater's preference for style locations
     modules/                    - Module/Package style react development
-        helloFresh-recipes      - HelloFresh Code
-        material-ui-auth        - Material-UI Form for Meteor User Accounts (by me)
+        counters                - PlanetX Counters app (RMUI)
+        backgrounds             - Backgrounds (just 'space_background' for now)
+        shell                   - PlanetX Shell app (RMUI)
+        utils                   - PlanetX Utilities - jsArray, Redux
+        material-ui-factories   - Prebuilt components (RMUI)
     universal/                  - Client/Server shared code
         collections/            - Meteor MongoDB app (vs module) level collections
         components/             - App level components (vs module)

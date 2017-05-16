@@ -28,8 +28,8 @@ type Props = {
 // $FlowHasTrouble autobind
 @autobind
 class CounterContainer extends Component {
-  // observer: ?{stop: Function} // eslint-disable-line react/sort-comp
-  // sub: ?{stop: Function}
+  observer: ?{stop: Function} // eslint-disable-line react/sort-comp
+  sub: ?{stop: Function}
   props: Props // eslint-disable-line react/sort-comp
 
   // componentWillMount() {
@@ -43,7 +43,7 @@ class CounterContainer extends Component {
   //     })
   //   }
   // }
-
+  //
   // componentWillUnmount() {
   //   if (Meteor.isClient) {
   //     if (this.observer != null) { this.observer.stop() }
@@ -82,7 +82,8 @@ class CounterContainer extends Component {
 
     const icon = incrementer ? (<AddIco color={grey900} />) : (<RemIco color={grey100} />)
     const backgroundColor = incrementer ? lightBlue400 : purple500
-    const onTouchTap = (): Function => this.props.handleUpdateCounter({ incr: !!incrementer })
+    const onTouchTap = (): Function =>
+      this.props.handleUpdateCounter({ incr: !!incrementer, counterId: this.props.counterId })
 
     return (
       <div className={styles.button}>
@@ -107,8 +108,6 @@ class CounterContainer extends Component {
 
   render(): ReEl {
     const { counterId } = this.props
-
-    console.log({ counterId })
 
     if(!counterId) {
       return (
@@ -140,7 +139,7 @@ function mapStoreToProps(state: Object): Object {
   //   px_counters
   // } = state
 
-  const px_counters = state._root.entries[1][1]
+  const px_counters = state._root.entries[2][1]
 
   const {
     counter
@@ -158,9 +157,9 @@ function mapStoreToProps(state: Object): Object {
 
 function mapDispatchToProps(dispatch: Dispatch<FSAction>): Object {
   return {
-    handleUpdateCounter: (incr: boolean) => {
+    handleUpdateCounter: ({ incr, counterId }: {incr: boolean, counterId: string}) => {
       dispatch(
-        ACTIONS.updateCounter(incr)
+        ACTIONS.updateCounterValue({ incr, recordId: counterId })
       )
     }
   }

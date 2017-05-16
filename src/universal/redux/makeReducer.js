@@ -11,10 +11,12 @@ import { routerReducer } from 'react-router-redux'
 
 // FIXME: [css-loader] breaks when using this import of an export
 // import { reducer as counterReducer } from '../../modules/counters/'
-import counterReducer from '../../modules/counters/redux/reducer'
+import shellReducer from '../../modules/shell/redux/reducer'
+import { reducer as counterReducer } from '../../modules/counters/redux'
 
 const currentReducers: {[key: string]: Reducer} = {
   router     : routerReducer,
+  px_shell   : shellReducer,
   px_counters: counterReducer
 }
 

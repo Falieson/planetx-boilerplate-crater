@@ -1,5 +1,4 @@
 declare module 'redux' {
-
   /*
     S = State
     A = Action
@@ -48,5 +47,4 @@ declare module 'redux' {
   declare function combineReducers<S: Object, A>(reducers: {[key: $Keys<S>]: Reducer<any, A>}): Reducer<S, A>;
 
   declare function compose<S, A>(...fns: Array<StoreEnhancer<S, A>>): Function;
-
 }
