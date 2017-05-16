@@ -2,9 +2,7 @@
 <PROJECT_ROOT>/build/**/.*
 .*/meteor-tool/.*
 <PROJECT_ROOT>/meteor/.*
-.*/node_modules/fbjs/.*
-.*/node_modules/react/.*
-.*/node_modules/meteor-imports-webpack-plugin/meteor-config.json
+.*/node_modules/.*
 
 [include]
 
